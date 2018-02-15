@@ -1,0 +1,87 @@
+unit Classe.TNavigator;
+
+interface
+
+uses
+  Vcl.DBCtrls,
+  Winapi.Windows,
+  System.SysUtils,
+  Vcl.Forms,
+  Vcl.Graphics;
+
+type
+  TNewNavigator = Class (TDBNavigator)
+    class procedure ImgNavigator(Navigater:TDBNavigator);
+  End;
+
+implementation
+
+{ TNewNavigator }
+
+class procedure TNewNavigator.ImgNavigator(Navigater: TDBNavigator);
+var
+  Bmp      : Tbitmap;
+  sPathBmp : string;
+  I        : Integer;
+begin
+  sPathBmp := IncludeTrailingBackslash(ExtractFilePath(Application.ExeName)) + 'Navigator\';
+  Bmp := Tbitmap.Create;
+  for I := 0 to 9 do
+  begin
+    case I of
+      0 :
+        begin
+           Bmp.LoadFromFile(sPathBmp + 'First.bmp');
+           TNewNavigator(Navigater).Buttons[nbFirst].Glyph := Bmp;
+        end;
+      1 :
+        begin
+           Bmp.LoadFromFile(sPathBmp + 'Prior.bmp');
+           TNewNavigator(Navigater).Buttons[nbPrior].Glyph := Bmp;
+        end;
+      2 :
+        begin
+           Bmp.LoadFromFile(sPathBmp + 'Next.bmp');
+           TNewNavigator(Navigater).Buttons[nbNext].Glyph := Bmp;
+        end;
+      3 :
+        begin
+           Bmp.LoadFromFile(sPathBmp + 'Last.bmp');
+           TNewNavigator(Navigater).Buttons[nbLast].Glyph := Bmp;
+        end;
+      4 :
+        begin
+           Bmp.LoadFromFile(sPathBmp + 'Insert.bmp');
+           TNewNavigator(Navigater).Buttons[nbInsert].Glyph := Bmp;
+        end;
+      5 :
+        begin
+           Bmp.LoadFromFile(sPathBmp + 'Delete.bmp');
+           TNewNavigator(Navigater).Buttons[nbDelete].Glyph := Bmp;
+        end;
+      6 :
+        begin
+           Bmp.LoadFromFile(sPathBmp + 'Edit.bmp');
+           TNewNavigator(Navigater).Buttons[nbEdit].Glyph := Bmp;
+        end;
+      7 :
+        begin
+           Bmp.LoadFromFile(sPathBmp + 'Post.bmp');
+           TNewNavigator(Navigater).Buttons[nbPost].Glyph := Bmp;
+        end;
+      8 :
+        begin
+           Bmp.LoadFromFile(sPathBmp + 'Cancel.bmp');
+           TNewNavigator(Navigater).Buttons[nbCancel].Glyph := Bmp;
+        end;
+      9 :
+        begin
+           Bmp.LoadFromFile(sPathBmp + 'Refresh.bmp');
+           TNewNavigator(Navigater).Buttons[nbRefresh].Glyph := Bmp;
+        end;
+    end;
+  end;
+  Bmp.Free;
+end;
+
+end.

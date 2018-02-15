@@ -1,0 +1,69 @@
+unit Classe.Conection;
+
+interface
+
+uses
+  FireDAC.Comp.Client,
+  System.SysUtils,
+  Vcl.Forms,
+  uFunction;
+
+type
+  TConnect = class
+    public
+      class procedure Connected(var CONN:TFDConnection);
+  end;
+
+implementation
+
+{ TConnect }
+
+class procedure TConnect.Connected(var CONN: TFDConnection);
+var
+  sConf : string;
+begin
+  sConf := ExtractFilePath(Application.ExeName) + 'Database.ini';
+
+  CONN.Connected := False;
+  if Ini_Le_String(sConf,'CONF','DriverID') = 'FB' then
+  begin
+    FB_Conn.Params.Database := sBanco;
+    FB_Conn.Params.DriverID := Ini_Le_String(sConf,'CONF','DriverID');
+    FB_Conn.Params.UserName := Ini_Le_String(sConf,'CONF','UserName');
+    FB_Conn.Params.Password := Ini_Le_String(sConf,'CONF','Password');
+    FB_Conn.Params.Add('Server='+Ini_Le_String(sConf,'CONF','Server'));
+    FB_Conn.Params.Add('Protocol='+Ini_Le_String(sConf,'CONF','Protocol'));
+    sBase := 'Firebird';
+  end
+  else if Ini_Le_String(sConf,'CONF','DriverID') = 'MySQL' then
+  begin
+    FB_Conn.Params.Database := sBanco;
+    FB_Conn.Params.DriverID := Ini_Le_String(sConf,'CONF','DriverID');
+    FB_Conn.Params.UserName := Ini_Le_String(sConf,'CONF','UserName');
+    FB_Conn.Params.Password := Ini_Le_String(sConf,'CONF','Password');
+    FB_Conn.Params.Add('Server='+Ini_Le_String(sConf,'CONF','Server'));
+    FB_Conn.Params.Add('Porta='+Ini_Le_String(sConf,'CONF','Porta'));
+    sBase := 'MySql';
+  end;
+
+  try
+    FB_Conn.Connected       := True;
+  except
+    try
+      FB_Conn.Connected       := False;
+      if Ini_Le_String(sConf,'CONF','DriverID') = 'FB' then
+        FB_Conn.Params.Password := 'masterkey'
+      else
+        FB_Conn.Params.Password := '';
+
+      FB_Conn.Connected       := True;
+    except
+      MessageDlg('Erro ao conectar no banco :' + #13+
+                 sBanco,mtInformation,[mbOK],0);
+      Result := False;
+    end;
+  end;
+end;
+end;
+
+end.

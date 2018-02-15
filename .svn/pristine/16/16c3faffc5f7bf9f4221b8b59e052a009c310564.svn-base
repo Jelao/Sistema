@@ -1,0 +1,18 @@
+# CONFIGURACAO MYSQL
+[CONF]
+DataBase=sistema
+DriverID=MySQL
+UserName=root
+Password=
+Server=127.0.0.1
+Protocol=TCPIP
+Porta=3306
+
+# CONFIGURACAO FIREBIRD
+#[CONF]
+#DataBase=
+#DriverID=FB
+#UserName=SYSDBA
+#Password=masterkey
+#Server=localhost
+#Protocol=TCPIP

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2015/09/27 20:43:36.681.pas,C:\Users\Administrador\Documents\RAD Studio\Projects\Unit1.pas=C:\Users\Administrador\Desktop\Create_Class_Delphi\Unit1.pas</Transaction>
+    <Transaction>2015/09/27 20:43:36.692.dfm,C:\Users\Administrador\Documents\RAD Studio\Projects\Unit1.dfm=C:\Users\Administrador\Desktop\Create_Class_Delphi\Unit1.dfm</Transaction>
+    <Transaction>2015/09/27 20:43:50.418.pas,C:\Users\Administrador\Documents\RAD Studio\Projects\Unit2.pas=C:\Users\Administrador\Desktop\Create_Class_Delphi\uCreate_Class_Auto.pas</Transaction>
+    <Transaction>2015/09/27 20:43:55.566.dproj,C:\Users\Administrador\Documents\RAD Studio\Projects\Project1.dproj=C:\Users\Administrador\Desktop\Create_Class_Delphi\Project1.dproj</Transaction>
+    <Transaction>2018/02/08 08:48:08.000.333,=C:\Projetos\Delphi berlin\Create_Class_Delphi\Unit2.pas</Transaction>
+    <Transaction>2018/02/08 08:48:22.000.436,=C:\Projetos\Delphi berlin\Create_Class_Delphi\Unit2.pas</Transaction>
+    <Transaction>2018/02/08 08:49:55.000.806,C:\Projetos\Delphi berlin\Create_Class_Delphi\Unit2.dfm=C:\Projetos\Delphi berlin\Create_Class_Delphi\uDM.dfm</Transaction>
+    <Transaction>2018/02/08 08:49:55.000.806,C:\Projetos\Delphi berlin\Create_Class_Delphi\Unit2.pas=C:\Projetos\Delphi berlin\Create_Class_Delphi\uDM.pas</Transaction>
+    <Transaction>2018/02/08 08:52:01.000.071,=C:\Projetos\Delphi berlin\Create_Class_Delphi\Unit2.pas</Transaction>
+    <Transaction>2018/02/08 08:52:46.000.534,C:\Projetos\Delphi berlin\Create_Class_Delphi\Unit2.pas=C:\Projetos\Delphi berlin\Create_Class_Delphi\Controller\uFunction.pas</Transaction>
+    <Transaction>2018/02/08 15:27:45.000.282,C:\Projetos\Delphi berlin\Create_Class_Delphi\Project1.dproj=C:\Projetos\Delphi berlin\Create_Class_Delphi\GeradorClass.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

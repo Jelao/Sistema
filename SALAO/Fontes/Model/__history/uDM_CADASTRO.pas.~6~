@@ -1,0 +1,54 @@
+unit uDM_CADASTRO;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.Phys.MySQLDef,
+  FireDAC.VCLUI.Wait,
+  FireDAC.Comp.UI,
+  FireDAC.Phys.MySQL,
+  Data.DB,
+  FireDAC.Comp.Client,
+  Classe.Conection;
+
+type
+  TDM_CADASTRO = class(TDataModule)
+    CONN: TFDConnection;
+    FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink;
+    FDGUIxWaitCursor1: TFDGUIxWaitCursor;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DM_CADASTRO: TDM_CADASTRO;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+procedure TDM_CADASTRO.DataModuleCreate(Sender: TObject);
+var
+  Connect : TConnect;
+begin
+  Connect := TConnect.Create;
+  Connect.Connected(CONN);
+end;
+
+end.

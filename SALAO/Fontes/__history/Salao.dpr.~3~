@@ -1,0 +1,17 @@
+program Salao;
+
+uses
+  Vcl.Forms,
+  uPrinc in 'uPrinc.pas' {Form1},
+  Classe.TNavigator in 'Controller\Classe.TNavigator.pas',
+  uCadastro in 'Viewers\uCadastro.pas' {frmCadastro};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrmCadastro, frmCadastro);
+  Application.Run;
+end.

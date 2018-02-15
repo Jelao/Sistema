@@ -1,0 +1,19 @@
+object DM_CADASTRO: TDM_CADASTRO
+  OldCreateOrder = False
+  Height = 414
+  Width = 484
+  object FDConnection1: TFDConnection
+    Left = 40
+    Top = 24
+  end
+  object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
+    VendorLib = 'libmySQL.dll'
+    Left = 168
+    Top = 40
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 168
+    Top = 96
+  end
+end

@@ -1,0 +1,5 @@
+object DM_CADASTRO: TDM_CADASTRO
+  OldCreateOrder = False
+  Height = 150
+  Width = 215
+end

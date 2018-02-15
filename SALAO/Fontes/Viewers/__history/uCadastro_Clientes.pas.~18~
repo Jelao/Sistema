@@ -1,0 +1,84 @@
+unit uCadastro_Clientes;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  uCadastro,
+  Data.DB,
+  Vcl.StdCtrls,
+  Vcl.Buttons,
+  Vcl.DBCtrls,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.ExtCtrls,
+  Vcl.ComCtrls,
+  FireDAC.Comp.Client,
+  Classe.PesquisaCadastro;
+
+type
+  TfrmCadastro_Cliente = class(TfrmCadastro)
+    Label39: TLabel;
+    Label40: TLabel;
+    Label42: TLabel;
+    Label43: TLabel;
+    Label44: TLabel;
+    Label45: TLabel;
+    Label46: TLabel;
+    ediID_CLIENTE: TEdit;
+    ediCodigo: TEdit;
+    ediRazao: TEdit;
+    ediFantasia: TEdit;
+    ediCep: TEdit;
+    ediCNPJ: TEdit;
+    ediEndereco: TEdit;
+    ComboBox1: TComboBox;
+    Label1: TLabel;
+    btnLimpar: TBitBtn;
+    procedure FormShow(Sender: TObject);
+  private
+    QryCadastro : TFDQuery;
+    dtsCadastro : TDataSource;
+  public
+    Pesquisa : TPesquisaCadastro;
+
+    procedure PesquisaCad;
+  end;
+
+var
+  frmCadastro_Cliente: TfrmCadastro_Cliente;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmCadastro_Cliente.FormShow(Sender: TObject);
+begin
+  if not(Assigned(QryCadastro)) then
+  begin
+    QryCadastro             := TFDQuery.Create(nil);
+    dtsCadastro             := TDataSource.Create(nil);
+    dtsCadastro.DataSet     := QryCadastro;
+    DBNavigator1.DataSource := dtsCadastro;
+    DBGrid1.DataSource      := dtsCadastro;
+  end;
+end;
+
+procedure TfrmCadastro_Cliente.PesquisaCad;
+begin
+  if Assigned(Pesquisa) then
+    Pesquisa := TPesquisaCadastro.Create;
+
+  Pesquisa.sRazao := ediRazao.Text;
+  Pesquisa.SqlOpen(QryCadastro,Pesquisa);
+end;
+
+end.

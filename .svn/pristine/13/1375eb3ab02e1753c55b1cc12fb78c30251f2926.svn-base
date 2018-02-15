@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/02/01 12:32:34.000.180,C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Projetos\Delphi berlin\SALAO CABELELEIRO\Fontes\uPrinc.dfm</Transaction>
+    <Transaction>2018/02/01 12:32:41.000.694,C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Projetos\Delphi berlin\SALAO CABELELEIRO\Fontes\Salao.dproj</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5" Android="AVD_for_Nexus_7_by_Google"/>
+	</ActiveMobileDevice>
+</BorlandProject>

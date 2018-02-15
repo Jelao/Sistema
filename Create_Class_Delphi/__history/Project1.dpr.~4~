@@ -1,0 +1,18 @@
+program Project1;
+
+uses
+  Forms,
+  Unit1 in 'Unit1.pas' {Form1},
+  uCreate_Class_Auto in 'uCreate_Class_Auto.pas',
+  uDM in 'uDM.pas' {CONN: TDataModule},
+  uFunction in 'Controller\uFunction.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TCONN, CONN);
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

@@ -1,0 +1,21 @@
+program Salao;
+
+uses
+  Vcl.Forms,
+  uPrinc in 'uPrinc.pas' {Form1},
+  Classe.TNavigator in 'Controller\Classe.TNavigator.pas',
+  uCadastro in 'Viewers\uCadastro.pas' {frmCadastro},
+  uCadastro_Clientes in 'Viewers\uCadastro_Clientes.pas' {frmCadastro_Cliente},
+  uDM_CADASTRO in 'Model\uDM_CADASTRO.pas' {DM_CADASTRO: TDataModule},
+  Classe.Conection in 'Controller\Classe.Conection.pas',
+  uFunction in 'Controller\uFunction.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TDM_CADASTRO, DM_CADASTRO);
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

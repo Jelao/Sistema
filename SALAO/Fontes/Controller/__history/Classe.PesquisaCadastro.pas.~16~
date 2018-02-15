@@ -1,0 +1,75 @@
+unit Classe.PesquisaCadastro;
+
+interface
+
+uses
+  FireDAC.Comp.Client,
+  uDM_CADASTRO,
+  uClasse.Cadastros, System.Classes, System.SysUtils, Vcl.Forms, Vcl.Dialogs;
+
+type
+  TPesquisaCadastro = class(TCadastros)
+    private
+      class function  PreparaPesq(Pesquisa:TPesquisaCadastro):string;
+    public
+     class procedure SqlOpen(QryCadastro:TFDQuery;Pesquisa:TPesquisaCadastro);
+  end;
+
+implementation
+
+{ TPesquisaCadastro }
+
+class function TPesquisaCadastro.PreparaPesq(Pesquisa: TPesquisaCadastro): string;
+var
+  sPesquisa: string;
+begin
+  sPesquisa := '';
+
+   := ediCNPJ.Text;
+  Pesquisa.sTipoFje           := cbxTipo.Text;
+  Pesquisa.sRazao             := ediRazao.Text;
+  Pesquisa.sFantasia
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sCnpjCpfPassaporte) <> '' then
+      sPesquisa := sPesquisa + ' AND sCnpjCpfPassaporte LIKE ' + QuotedStr(Pesquisa.sCnpjCpfPassaporte+'%');
+  end
+  else
+  begin
+    if Trim(Pesquisa.sCnpjCpfPassaporte) <> '' then
+      sPesquisa := ' Where sCnpjCpfPassaporte LIKE ' + QuotedStr(Pesquisa.sCnpjCpfPassaporte+'%');
+  end;
+end;
+
+class procedure TPesquisaCadastro.SqlOpen(QryCadastro:TFDQuery;Pesquisa:TPesquisaCadastro);
+var
+  sScript: string;
+  SqlListScript: TStringList;
+begin
+  sScript := Trim(IncludeTrailingBackslash(ExtractFilePath(Application.ExeName)) + 'Sql\Cadastro\QryCadastro.txt');
+  if FileExists(sScript) then
+  begin
+    SqlListScript := TStringList.Create;
+    SqlListScript.LoadFromFile(sScript);
+    if SqlListScript.Text <> '' then
+    begin
+      sScript      := SqlListScript.Text;
+      SqlListScript.Free;
+      QryCadastro.Connection := DM_CADASTRO.CONN;
+
+      QryCadastro.Close;
+      QryCadastro.SQL.Add(Trim(sScript));
+      QryCadastro.SQL.Add(' ' + Trim(PreparaPesq(Pesquisa)));
+      QryCadastro.Open;
+    end
+    else
+    begin
+      SqlListScript.Free;
+      MessageDlg('Sql script Cadastro não instalado por favor verifique !',mtInformation,[mbOK],0);
+      Exit;
+    end;
+  end;
+end;
+
+end.

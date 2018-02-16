@@ -15,7 +15,8 @@ uses
   PsAPI,
   Registry,
   System.Contnrs,
-  System.Generics.Collections;
+  System.Generics.Collections,
+  Jpeg;
 
 var
   sLogin    : String;
@@ -36,10 +37,15 @@ function RetornaDataSAT(sData:string):string;
 function RetornaHoraSAT(sHora:string):string;
 function LastCampo(sText,sDelimiter:string):Boolean;
 function RemoveStrings(sTxt:String):String;
+function FinalizaProcessoExe(ExeFileName: string): Integer;
+function VerficaExe(Nome:String):Boolean;
 
 procedure Gerar_Log(Texto: String);
 procedure CriaDir(Dir:String);
 
+procedure ConvertJPG_BMP(xFile: string);
+procedure ConvertBMP_JPG(xFile: string; Quality : Integer );
+procedure ResizeBitmap(Bitmap: TBitmap);
 
 implementation
 
@@ -412,4 +418,124 @@ begin
   end;
   Result := StringReplace(sTexto,Result,'',[rfReplaceAll]);
 end;
+
+function FinalizaProcessoExe(ExeFileName: string): Integer;
+const
+  PROCESS_TERMINATE = $0001;
+var
+  ContinueLoop: BOOL;
+  FSnapshotHandle: THandle;
+  FProcessEntry32: TProcessEntry32;
+begin
+  Result := 0;
+  FSnapshotHandle := CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+  FProcessEntry32.dwSize := SizeOf(FProcessEntry32);
+  ContinueLoop := Process32First(FSnapshotHandle, FProcessEntry32);
+  while Integer(ContinueLoop) <> 0 do
+  begin
+    if ((UpperCase(ExtractFileName(FProcessEntry32.szExeFile)) = UpperCase(ExeFileName)) or (UpperCase(FProcessEntry32.szExeFile) = UpperCase(ExeFileName))) then
+    begin
+      Result := Integer(TerminateProcess(
+                        OpenProcess(PROCESS_TERMINATE,
+                                    BOOL(0),
+                                    FProcessEntry32.th32ProcessID),
+                                    0));
+    end;
+    ContinueLoop := Process32Next(FSnapshotHandle, FProcessEntry32);
+  end;
+  CloseHandle(FSnapshotHandle);
+end;
+
+function VerficaExe(Nome:String):Boolean;
+const
+  PROCESS_TERMINATE = $0001;
+var
+  ContinueLoop: BOOL;
+  FSnapshotHandle: THandle;
+  FProcessEntry32: TProcessEntry32;
+begin
+  Result := False;
+  FSnapshotHandle := CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+  FProcessEntry32.dwSize := SizeOf(FProcessEntry32);
+  ContinueLoop := Process32First(FSnapshotHandle, FProcessEntry32);
+  while Integer(ContinueLoop) <> 0 do
+  begin
+    if ((UpperCase(ExtractFileName(FProcessEntry32.szExeFile)) = UpperCase(Nome)) or (UpperCase(FProcessEntry32.szExeFile) = UpperCase(Nome))) then
+    begin
+      Result := True;
+      Exit;
+    end;
+    ContinueLoop := Process32Next(FSnapshotHandle, FProcessEntry32);
+  end;
+  CloseHandle(FSnapshotHandle);
+end;
+
+procedure ConvertJPG_BMP(xFile: string);
+var
+  BMP: TBitmap;
+  JPG: TJPegImage;
+begin
+  if ExtractFileExt(xFile) <> '.jpg' then
+  begin
+   ShowMessage('Formato diferente de jpg'+#13+ 'Formato atual : ' + ExtractFileExt(xFile));
+   Exit;
+  end;
+
+  JPG := TJPegImage.Create;
+  try
+   JPG.LoadFromFile(xFile);
+   BMP := TBitmap.Create;
+   try
+    BMP.Assign(JPG);
+    BMP.SaveToFile(ChangeFileExt(xFile, '.bmp'));
+   finally
+     FreeAndNil(BMP);
+   end;
+  finally
+   FreeAndNil(JPG);
+  end;
+end;
+
+procedure ConvertBMP_JPG(xFile: string; Quality : Integer );
+var
+  BMP: TBitmap;
+  JPG: TJPegImage;
+begin
+  if ExtractFileExt(xFile) <> '.bmp' then
+  begin
+    ShowMessage('Formato diferente de bmp'+#13+'Formato atual : ' + ExtractFileExt(xFile));
+    Exit;
+  end;
+
+  BMP := TBitmap.Create;
+  try
+    BMP.LoadFromFile(xFile);
+    JPG := TJPegImage.Create;
+    try
+     JPG.CompressionQuality := Quality;
+     JPG.Assign(BMP);
+     JPG.SaveToFile(ChangeFileExt(xFile, '.jpg'));
+    finally
+     FreeAndNil(JPG);
+    end;
+   finally
+     FreeAndNil(BMP);
+   end;
+end;
+
+procedure ResizeBitmap(Bitmap: TBitmap);
+var
+  buffer: TBitmap;
+begin
+  buffer := TBitmap.Create;
+  try
+    buffer.SetSize(250, 250);
+    buffer.Canvas.StretchDraw(Rect(0, 0, 250, 250), Bitmap);
+    Bitmap.SetSize(250, 250);
+    Bitmap.Canvas.Draw(0, 0, buffer);
+  finally
+    buffer.Free;
+  end;
+end;
+
 end.

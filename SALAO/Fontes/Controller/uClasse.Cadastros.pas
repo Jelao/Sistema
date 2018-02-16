@@ -32,7 +32,7 @@ type
     FsSnapchat: String;
     FidTransporte: Integer;
     FflCaptal: Real;
-    FidCadastro: Integer;
+    FidCadastro: String;
     FsFoneComercial: String;
     FsIe: String;
     FsFoto: TStream;
@@ -72,13 +72,16 @@ type
     FidCondicoespg1: Integer;
     FdDataempresa: TDate;
     FidCondicoespg6: Integer;
+    FsCodigoCadastro: string;
+    FsCEP: String;
+    FsENDERECO: String;
     procedure SetdDatacadastro(const Value: TDate);
     procedure SetdDataempresa(const Value: TDate);
     procedure SetdDatanascimento(const Value: TDate);
     procedure SetflCaptal(const Value: Real);
     procedure SetflLimitecred(const Value: Real);
     procedure SetflSaldodecredito(const Value: Real);
-    procedure SetidCadastro(const Value: Integer);
+    procedure SetidCadastro(const Value: string);
     procedure SetidCondicoespg1(const Value: Integer);
     procedure SetidCondicoespg10(const Value: Integer);
     procedure SetidCondicoespg2(const Value: Integer);
@@ -127,6 +130,9 @@ type
     procedure SetsTwitter(const Value: String);
     procedure SetsWhatsapp(const Value: String);
     procedure SetsYoutube(const Value: String);
+    procedure SetsCodigoCadastro(const Value: string);
+    procedure SetsCEP(const Value: String);
+    procedure SetsENDERECO(const Value: String);
     public
       property sFoto: TStream read FsFoto write SetsFoto;
       property idCondicoespg10: Integer read FidCondicoespg10 write SetidCondicoespg10;
@@ -182,7 +188,10 @@ type
       property idSubTipoCadastro: Integer read FidSubTipoCadastro write SetidSubTipoCadastro;
       property sCnpjCpfPassaporte: String read FsCnpjCpfPassaporte write SetsCnpjCpfPassaporte;
       property sTipoFje: String read FsTipoFje write SetsTipoFje;
-      property idCadastro: Integer read FidCadastro write SetidCadastro;
+      property idCadastro: String read FidCadastro write SetidCadastro;
+      property sCodigoCadastro : string read FsCodigoCadastro write SetsCodigoCadastro;
+      property sCEP : String read FsCEP write SetsCEP;
+      property sENDERECO:String read FsENDERECO write SetsENDERECO;
     end;
 
 implementation
@@ -219,7 +228,7 @@ begin
   FflSaldodecredito := Value;
 end;
 
-procedure TCadastros.SetidCadastro(const Value: Integer);
+procedure TCadastros.SetidCadastro(const Value: String);
 begin
   FidCadastro := Value;
 end;
@@ -309,9 +318,19 @@ begin
   FsCelular := Value;
 end;
 
+procedure TCadastros.SetsCEP(const Value: String);
+begin
+  FsCEP := Value;
+end;
+
 procedure TCadastros.SetsCnpjCpfPassaporte(const Value: String);
 begin
   FsCnpjCpfPassaporte := Value;
+end;
+
+procedure TCadastros.SetsCodigoCadastro(const Value: string);
+begin
+  FsCodigoCadastro := Value;
 end;
 
 procedure TCadastros.SetsContato(const Value: String);
@@ -322,6 +341,11 @@ end;
 procedure TCadastros.SetsEmail(const Value: String);
 begin
   FsEmail := Value;
+end;
+
+procedure TCadastros.SetsENDERECO(const Value: String);
+begin
+  FsENDERECO := Value;
 end;
 
 procedure TCadastros.SetsEstadocivil(const Value: String);

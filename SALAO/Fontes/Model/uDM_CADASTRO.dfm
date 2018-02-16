@@ -10,6 +10,8 @@ object DM_CADASTRO: TDM_CADASTRO
       'User_Name=root'
       'Server=localhost'
       'DriverID=MySQL')
+    ResourceOptions.AssignedValues = [rvAutoReconnect]
+    ResourceOptions.AutoReconnect = True
     LoginPrompt = False
     Left = 64
     Top = 24

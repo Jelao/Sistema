@@ -22,7 +22,24 @@ uses
   Vcl.ExtCtrls,
   Vcl.ComCtrls,
   FireDAC.Comp.Client,
-  Classe.PesquisaCadastro, Vcl.Mask, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet;
+  Classe.PesquisaCadastro,
+  Vcl.Mask,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.Stan.Async,
+  FireDAC.DApt,
+  FireDAC.Comp.DataSet,
+  ACBrBase,
+  ACBrEnterTab,
+  Vcl.ExtDlgs,
+  Jpeg,
+  ShellApi,
+  uFunction;
 
 type
   TfrmCadastro_Cliente = class(TfrmCadastro)
@@ -43,13 +60,10 @@ type
     cbxTipo: TComboBox;
     Label1: TLabel;
     btnLimpar: TBitBtn;
-    Label2: TLabel;
-    DBEdit1: TDBEdit;
     dtsCadastro: TDataSource;
     Label3: TLabel;
     DBEdit2: TDBEdit;
     Label4: TLabel;
-    DBEdit3: TDBEdit;
     Label5: TLabel;
     DBEdit4: TDBEdit;
     Label6: TLabel;
@@ -58,8 +72,6 @@ type
     DBEdit7: TDBEdit;
     Label9: TLabel;
     DBEdit8: TDBEdit;
-    Label10: TLabel;
-    DBEdit9: TDBEdit;
     Label11: TLabel;
     Label12: TLabel;
     DBEdit11: TDBEdit;
@@ -92,15 +104,11 @@ type
     Label26: TLabel;
     DBEdit25: TDBEdit;
     Label27: TLabel;
-    DBEdit26: TDBEdit;
     Label28: TLabel;
-    DBEdit27: TDBEdit;
     Label29: TLabel;
-    DBEdit28: TDBEdit;
     Label30: TLabel;
     DBEdit29: TDBEdit;
     Label31: TLabel;
-    DBEdit30: TDBEdit;
     Label32: TLabel;
     DBEdit31: TDBEdit;
     Label33: TLabel;
@@ -108,11 +116,9 @@ type
     Label34: TLabel;
     DBEdit33: TDBEdit;
     Label35: TLabel;
-    DBEdit34: TDBEdit;
     Label36: TLabel;
     DBEdit35: TDBEdit;
     Label37: TLabel;
-    DBEdit36: TDBEdit;
     Label38: TLabel;
     DBEdit37: TDBEdit;
     Label41: TLabel;
@@ -150,7 +156,6 @@ type
     DBEdit55: TDBEdit;
     Label64: TLabel;
     DBEdit56: TDBEdit;
-    Label65: TLabel;
     DBImage1: TDBImage;
     DBLookupComboBox1: TDBLookupComboBox;
     QryCadastro: TFDQuery;
@@ -189,8 +194,25 @@ type
     dtsVendedor: TDataSource;
     tblrepresentante: TFDTable;
     dtsRepresentante: TDataSource;
+    DBComboBox1: TDBComboBox;
+    DBComboBox2: TDBComboBox;
+    DBComboBox3: TDBComboBox;
+    DBComboBox4: TDBComboBox;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    ACBrEnterTab1: TACBrEnterTab;
+    OpenPictureDialog: TOpenPictureDialog;
+    ediDataCadastro: TDateTimePicker;
+    ediDataNascimento: TDateTimePicker;
+    ediDataEmpresa: TDateTimePicker;
     procedure FormShow(Sender: TObject);
     procedure ediIdCadastroChange(Sender: TObject);
+    procedure DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure ediDataCadastroChange(Sender: TObject);
+    procedure ediDataNascimentoChange(Sender: TObject);
+    procedure ediDataEmpresaChange(Sender: TObject);
   private
   public
     Pesquisa : TPesquisaCadastro;
@@ -205,6 +227,122 @@ implementation
 
 {$R *.dfm}
 
+procedure TfrmCadastro_Cliente.BitBtn1Click(Sender: TObject);
+var
+  sPathCamera : String;
+  sPathImg    : String;
+  BMP : TBitmap;
+begin
+  sPathCamera := ExtractFilePath(Application.ExeName) + 'Camera.exe';
+  sPathImg    := ExtractFilePath(Application.ExeName) + 'Temp\temp.bmp';
+
+  ShellExecute(handle,'open',PChar(sPathCamera), '','',SW_SHOWNORMAL);
+  while true do
+  begin
+    if not(VerficaExe('Camera.exe')) then
+      Break;
+  end;
+
+  if FileExists(sPathImg) then
+  begin
+    BMP := TBitmap.Create;
+    BMP.LoadFromFile(sPathImg);
+    DBImage1.Picture.LoadFromFile(sPathImg);
+    ResizeBitmap(BMP);
+    QryCadastro.FieldByName('sFoto').Assign(BMP);
+    BMP.Free;
+    DeleteFile(sPathImg);
+  end;
+end;
+
+procedure TfrmCadastro_Cliente.BitBtn2Click(Sender: TObject);
+var
+  JPG :TJPEGImage;
+  BMP : TBitmap;
+begin
+  if OpenPictureDialog.Execute then
+  begin
+    if POS('.jpg',OpenPictureDialog.FileName) > 0 then
+    begin
+      JPG := TJPEGImage.Create;
+      JPG.LoadFromFile(OpenPictureDialog.FileName);
+      BMP := TBitmap.Create;
+      BMP.Assign(JPG);
+      JPG.Free;
+      DBImage1.Picture.LoadFromFile(OpenPictureDialog.FileName);
+      ResizeBitmap(BMP);
+      QryCadastro.FieldByName('sFoto').Assign(BMP);
+      BMP.Free;
+    end
+    else if POS('.bmp',OpenPictureDialog.FileName) > 0 then
+    begin
+      BMP := TBitmap.Create;
+      BMP.LoadFromFile(OpenPictureDialog.FileName);
+      DBImage1.Picture.LoadFromFile(OpenPictureDialog.FileName);
+      ResizeBitmap(BMP);
+      QryCadastro.FieldByName('sFoto').Assign(BMP);
+      BMP.Free;
+    end;
+  end;
+end;
+
+
+procedure TfrmCadastro_Cliente.ediDataCadastroChange(Sender: TObject);
+begin
+  QryCadastro.FieldByName('DATA_CADASTRO').AsDateTime := ediDataCadastro.DateTime;
+end;
+
+procedure TfrmCadastro_Cliente.ediDataEmpresaChange(Sender: TObject);
+begin
+  QryCadastro.FieldByName('DATA_EMPRESA').AsDateTime := ediDataEmpresa.DateTime;
+end;
+
+procedure TfrmCadastro_Cliente.ediDataNascimentoChange(Sender: TObject);
+begin
+  QryCadastro.FieldByName('DATA_NASCIMENTO').AsDateTime := ediDataNascimento.DateTime;
+end;
+
+procedure TfrmCadastro_Cliente.DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
+begin
+  Panel5.Enabled :=  false;
+  ediDataCadastro.DateTime   := QryCadastro.FieldByName('DATA_CADASTRO').AsDateTime;
+  ediDataNascimento.DateTime := QryCadastro.FieldByName('DATA_NASCIMENTO').AsDateTime;
+  ediDataEmpresa.DateTime    := QryCadastro.FieldByName('DATA_EMPRESA').AsDateTime;
+
+  case Button of
+    nbFirst: ;
+    nbPrior: ;
+    nbNext: ;
+    nbLast: ;
+    nbInsert:
+    begin
+      Panel5.Enabled := true;
+      ediDataCadastro.DateTime    := Now;
+      ediDataNascimento.DateTime  := Now;
+      ediDataEmpresa.DateTime     := Now;
+      DBEdit2.SetFocus;
+    end;
+    nbDelete: ;
+    nbEdit:
+    begin
+      Panel5.Enabled := true;
+      ediDataCadastro.DateTime    := Now;
+      ediDataNascimento.DateTime  := Now;
+      ediDataEmpresa.DateTime     := Now;
+      DBEdit2.SetFocus;
+    end;
+    nbPost:
+    begin
+
+    end;
+    nbCancel: ;
+    nbRefresh: ;
+    nbApplyUpdates: ;
+    nbCancelUpdates: ;
+  end;
+
+end;
+
 procedure TfrmCadastro_Cliente.ediIdCadastroChange(Sender: TObject);
 begin
   PesquisaCad;
@@ -212,25 +350,30 @@ end;
 
 procedure TfrmCadastro_Cliente.FormShow(Sender: TObject);
 begin
+  if not(Assigned(Pesquisa)) then
+    Pesquisa := TPesquisaCadastro.Create;
+
+  Pesquisa.openTable(tbTipoCadastro,
+                   tblSubTipoCadastro,
+                   tblpais,
+                   tbltransportadora,
+                   tblvendedor,
+                   tblrepresentante);
+
   PesquisaCad;
 end;
 
 procedure TfrmCadastro_Cliente.PesquisaCad;
 begin
-  if not(Assigned(Pesquisa)) then
-    Pesquisa := TPesquisaCadastro.Create;
-
+  Pesquisa.idCadastro         := ediIdCadastro.Text;
+  Pesquisa.sCodigoCadastro    := ediCodigo.Text;
   Pesquisa.sCnpjCpfPassaporte := ediCNPJ.Text;
+  Pesquisa.sCEP               := ediCep.Text;
+  Pesquisa.sENDERECO          := ediEndereco.Text;
   Pesquisa.sTipoFje           := cbxTipo.Text;
   Pesquisa.sRazao             := ediRazao.Text;
   Pesquisa.sFantasia          := ediFantasia.Text;
   Pesquisa.SqlOpen(QryCadastro,
-                   tbTipoCadastro,
-                   tblSubTipoCadastro,
-                   tblpais,
-                   tbltransportadora,
-                   tblvendedor,
-                   tblrepresentante,
                    Pesquisa);
 end;
 

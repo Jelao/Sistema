@@ -1,0 +1,178 @@
+unit Classe.PesquisaCadastro;
+
+interface
+
+uses
+  FireDAC.Comp.Client,
+  uDM_CADASTRO,
+  uClasse.Cadastros, System.Classes, System.SysUtils, Vcl.Forms, Vcl.Dialogs;
+
+type
+  TPesquisaCadastro = class(TCadastros)
+    private
+      class function  PreparaPesq(Pesquisa:TPesquisaCadastro):string;
+    public
+     class procedure SqlOpen(QryCadastro:TFDQuery;
+                             tbTipoCadastro:TFDTable;
+                             tblSubTipoCadastro:TFDTable;
+                             tblpais:TFDTable;
+                             tbltransportadora:TFDTable;
+                             tblvendedor:TFDTable;
+                             tblrepresentante:TFDTable;
+                             Pesquisa:TPesquisaCadastro);
+  end;
+
+implementation
+
+{ TPesquisaCadastro }
+
+class function TPesquisaCadastro.PreparaPesq(Pesquisa: TPesquisaCadastro): string;
+var
+  sPesquisa: string;
+begin
+  sPesquisa := '';
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.idCadastro) <> '' then
+      sPesquisa := sPesquisa + ' AND ID = ' + QuotedStr(Pesquisa.idCadastro);
+  end
+  else
+  begin
+    if Trim(Pesquisa.sCnpjCpfPassaporte) <> '' then
+      sPesquisa := ' Where ID = ' + QuotedStr(Pesquisa.idCadastro);
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sCodigoCadastro) <> '' then
+      sPesquisa := sPesquisa + ' AND CODIGO = ' + QuotedStr(Pesquisa.sCodigoCadastro);
+  end
+  else
+  begin
+    if Trim(Pesquisa.sCnpjCpfPassaporte) <> '' then
+      sPesquisa := ' Where CODIGO = ' + QuotedStr(Pesquisa.sCodigoCadastro);
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sCnpjCpfPassaporte) <> '' then
+      sPesquisa := sPesquisa + ' AND CNPJ_CPF_PASSAPORTE LIKE ' + QuotedStr(Pesquisa.sCnpjCpfPassaporte+'%');
+  end
+  else
+  begin
+    if Trim(Pesquisa.sCnpjCpfPassaporte) <> '' then
+      sPesquisa := ' Where CNPJ_CPF_PASSAPORTE LIKE ' + QuotedStr(Pesquisa.sCnpjCpfPassaporte+'%');
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sCEP) <> '' then
+      sPesquisa := sPesquisa + ' AND CEP = ' + QuotedStr(Pesquisa.sCodigoCadastro);
+  end
+  else
+  begin
+    if Trim(Pesquisa.sCnpjCpfPassaporte) <> '' then
+      sPesquisa := ' Where CEP = ' + QuotedStr(Pesquisa.sCodigoCadastro);
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sFantasia) <> '' then
+      sPesquisa := sPesquisa + ' AND sFantasia LIKE ' + QuotedStr(Pesquisa.sFantasia+'%');
+  end
+  else
+  begin
+    if Trim(Pesquisa.sFantasia) <> '' then
+      sPesquisa := ' Where sFantasia LIKE ' + QuotedStr(Pesquisa.sFantasia+'%');
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sRazao) <> '' then
+      sPesquisa := sPesquisa + ' AND sRazao LIKE ' + QuotedStr(Pesquisa.sRazao+'%');
+  end
+  else
+  begin
+    if Trim(Pesquisa.sRazao) <> '' then
+      sPesquisa := ' Where sRazao LIKE ' + QuotedStr(Pesquisa.sRazao+'%');
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sTipoFje) <> '' then
+      sPesquisa := sPesquisa + ' AND sTipoFje LIKE ' + QuotedStr(Pesquisa.sTipoFje+'%');
+  end
+  else
+  begin
+    if Trim(Pesquisa.sTipoFje) <> '' then
+      sPesquisa := ' Where sTipoFje LIKE ' + QuotedStr(Pesquisa.sTipoFje+'%');
+  end;
+
+  Result := sPesquisa;
+end;
+
+class procedure TPesquisaCadastro.SqlOpen(QryCadastro:TFDQuery;
+                                          tbTipoCadastro:TFDTable;
+                                          tblSubTipoCadastro:TFDTable;
+                                          tblpais:TFDTable;
+                                          tbltransportadora:TFDTable;
+                                          tblvendedor:TFDTable;
+                                          tblrepresentante:TFDTable;
+                                          Pesquisa:TPesquisaCadastro);
+var
+  sScript: string;
+  SqlListScript: TStringList;
+begin
+  sScript := Trim(IncludeTrailingBackslash(ExtractFilePath(Application.ExeName)) + 'Sql\Cadastro\QryCadastro.txt');
+  if FileExists(sScript) then
+  begin
+    SqlListScript := TStringList.Create;
+    SqlListScript.LoadFromFile(sScript);
+    if SqlListScript.Text <> '' then
+    begin
+      sScript      := SqlListScript.Text;
+      SqlListScript.Free;
+      QryCadastro.Connection         := DM_CADASTRO.CONN;
+
+      tbTipoCadastro.Connection      := DM_CADASTRO.CONN;
+      tblSubTipoCadastro.Connection  := DM_CADASTRO.CONN;
+      tblpais.Connection             := DM_CADASTRO.CONN;
+      tbltransportadora.Connection   := DM_CADASTRO.CONN;
+      tblvendedor.Connection         := DM_CADASTRO.CONN;
+      tblrepresentante.Connection    := DM_CADASTRO.CONN;
+
+      tbTipoCadastro.Close;
+      tbTipoCadastro.Open;
+
+      tblSubTipoCadastro.Close;
+      tblSubTipoCadastro.Open;
+
+      tblpais.Close;
+      tblpais.Open;
+
+      tbltransportadora.Close;
+      tbltransportadora.Open;
+
+      tblvendedor.Close;
+      tblvendedor.open;
+
+      tblrepresentante.Close;
+      tblrepresentante.Open;
+
+      QryCadastro.Close;
+      QryCadastro.SQL.Clear;
+      QryCadastro.SQL.Add(Trim(sScript));
+      QryCadastro.SQL.Add(' ' + Trim(PreparaPesq(Pesquisa)));
+      QryCadastro.Open;
+    end
+    else
+    begin
+      SqlListScript.Free;
+      MessageDlg('Sql script Cadastro não instalado por favor verifique !',mtInformation,[mbOK],0);
+      Exit;
+    end;
+  end;
+end;
+
+end.

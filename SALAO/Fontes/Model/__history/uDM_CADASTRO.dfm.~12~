@@ -1,0 +1,27 @@
+object DM_CADASTRO: TDM_CADASTRO
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
+  Height = 351
+  Width = 466
+  object CONN: TFDConnection
+    Params.Strings = (
+      'Database=sistema'
+      'User_Name=root'
+      'Server=localhost'
+      'DriverID=MySQL')
+    LoginPrompt = False
+    Left = 64
+    Top = 24
+  end
+  object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
+    VendorLib = 'C:\Projetos\Delphi berlin\SISTEMA\SALAO\Dist\libmySQL.dll'
+    Left = 64
+    Top = 88
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 64
+    Top = 144
+  end
+end

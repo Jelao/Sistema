@@ -12,13 +12,13 @@ type
     private
       class function  PreparaPesq(Pesquisa:TPesquisaCadastro):string;
     public
-     class procedure SqlOpen(QryCadastro:TFDQuery;
-                             tbTipoCadastro:TFDTable;
+     class procedure openTable(tbTipoCadastro:TFDTable;
                              tblSubTipoCadastro:TFDTable;
                              tblpais:TFDTable;
                              tbltransportadora:TFDTable;
                              tblvendedor:TFDTable;
-                             tblrepresentante:TFDTable;
+                             tblrepresentante:TFDTable);
+     class procedure SqlOpen(QryCadastro:TFDQuery;
                              Pesquisa:TPesquisaCadastro);
   end;
 
@@ -26,11 +26,61 @@ implementation
 
 { TPesquisaCadastro }
 
+class procedure TPesquisaCadastro.openTable(tbTipoCadastro, tblSubTipoCadastro, tblpais, tbltransportadora, tblvendedor, tblrepresentante: TFDTable);
+begin
+  tbTipoCadastro.Connection      := DM_CADASTRO.CONN;
+  tblSubTipoCadastro.Connection  := DM_CADASTRO.CONN;
+  tblpais.Connection             := DM_CADASTRO.CONN;
+  tbltransportadora.Connection   := DM_CADASTRO.CONN;
+  tblvendedor.Connection         := DM_CADASTRO.CONN;
+  tblrepresentante.Connection    := DM_CADASTRO.CONN;
+
+  tbTipoCadastro.Close;
+  tbTipoCadastro.Open;
+
+  tblSubTipoCadastro.Close;
+  tblSubTipoCadastro.Open;
+
+  tblpais.Close;
+  tblpais.Open;
+
+  tbltransportadora.Close;
+  tbltransportadora.Open;
+
+  tblvendedor.Close;
+  tblvendedor.open;
+
+  tblrepresentante.Close;
+  tblrepresentante.Open;
+end;
+
 class function TPesquisaCadastro.PreparaPesq(Pesquisa: TPesquisaCadastro): string;
 var
   sPesquisa: string;
 begin
   sPesquisa := '';
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.idCadastro) <> '' then
+      sPesquisa := sPesquisa + ' AND idCadastro = ' + QuotedStr(Pesquisa.idCadastro);
+  end
+  else
+  begin
+    if Trim(Pesquisa.idCadastro) <> '' then
+      sPesquisa := ' Where idCadastro = ' + QuotedStr(Pesquisa.idCadastro);
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sCodigoCadastro) <> '' then
+      sPesquisa := sPesquisa + ' AND sCodigoCadastro = ' + QuotedStr(Pesquisa.sCodigoCadastro);
+  end
+  else
+  begin
+    if Trim(Pesquisa.sCodigoCadastro) <> '' then
+      sPesquisa := ' Where sCodigoCadastro = ' + QuotedStr(Pesquisa.sCodigoCadastro);
+  end;
 
   if sPesquisa <> '' then
   begin
@@ -45,13 +95,35 @@ begin
 
   if sPesquisa <> '' then
   begin
-    if Trim(Pesquisa.sFantasia) <> '' then
-      sPesquisa := sPesquisa + ' AND sFantasia LIKE ' + QuotedStr(Pesquisa.sFantasia+'%');
+    if Trim(Pesquisa.sCEP) <> '' then
+      sPesquisa := sPesquisa + ' AND sCep LIKE ' + QuotedStr(Pesquisa.sCEP+'%');
   end
   else
   begin
-    if Trim(Pesquisa.sFantasia) <> '' then
-      sPesquisa := ' Where sFantasia LIKE ' + QuotedStr(Pesquisa.sFantasia+'%');
+    if Trim(Pesquisa.sCEP) <> '' then
+      sPesquisa := ' Where sCep LIKE ' + QuotedStr(Pesquisa.sCEP+'%');
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sENDERECO) <> '' then
+      sPesquisa := sPesquisa + ' AND sEndereco LIKE ' + QuotedStr(Pesquisa.sENDERECO+'%');
+  end
+  else
+  begin
+    if Trim(Pesquisa.sENDERECO) <> '' then
+      sPesquisa := ' Where sEndereco LIKE ' + QuotedStr(Pesquisa.sENDERECO+'%');
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sTipoFje) <> '' then
+      sPesquisa := sPesquisa + ' AND sTipoFje LIKE ' + QuotedStr(Pesquisa.sTipoFje+'%');
+  end
+  else
+  begin
+    if Trim(Pesquisa.sTipoFje) <> '' then
+      sPesquisa := ' Where sTipoFje LIKE ' + QuotedStr(Pesquisa.sTipoFje+'%');
   end;
 
   if sPesquisa <> '' then
@@ -67,25 +139,19 @@ begin
 
   if sPesquisa <> '' then
   begin
-    if Trim(Pesquisa.sTipoFje) <> '' then
-      sPesquisa := sPesquisa + ' AND sTipoFje LIKE ' + QuotedStr(Pesquisa.sTipoFje+'%');
+    if Trim(Pesquisa.sFantasia) <> '' then
+      sPesquisa := sPesquisa + ' AND sFantasia LIKE ' + QuotedStr(Pesquisa.sFantasia+'%');
   end
   else
   begin
-    if Trim(Pesquisa.sTipoFje) <> '' then
-      sPesquisa := ' Where sTipoFje LIKE ' + QuotedStr(Pesquisa.sTipoFje+'%');
+    if Trim(Pesquisa.sFantasia) <> '' then
+      sPesquisa := ' Where sFantasia LIKE ' + QuotedStr(Pesquisa.sFantasia+'%');
   end;
 
   Result := sPesquisa;
 end;
 
 class procedure TPesquisaCadastro.SqlOpen(QryCadastro:TFDQuery;
-                                          tbTipoCadastro:TFDTable;
-                                          tblSubTipoCadastro:TFDTable;
-                                          tblpais:TFDTable;
-                                          tbltransportadora:TFDTable;
-                                          tblvendedor:TFDTable;
-                                          tblrepresentante:TFDTable;
                                           Pesquisa:TPesquisaCadastro);
 var
   sScript: string;
@@ -101,31 +167,6 @@ begin
       sScript      := SqlListScript.Text;
       SqlListScript.Free;
       QryCadastro.Connection         := DM_CADASTRO.CONN;
-
-      tbTipoCadastro.Connection      := DM_CADASTRO.CONN;
-      tblSubTipoCadastro.Connection  := DM_CADASTRO.CONN;
-      tblpais.Connection             := DM_CADASTRO.CONN;
-      tbltransportadora.Connection   := DM_CADASTRO.CONN;
-      tblvendedor.Connection         := DM_CADASTRO.CONN;
-      tblrepresentante.Connection    := DM_CADASTRO.CONN;
-
-      tbTipoCadastro.Close;
-      tbTipoCadastro.Open;
-
-      tblSubTipoCadastro.Close;
-      tblSubTipoCadastro.Open;
-
-      tblpais.Close;
-      tblpais.Open;
-
-      tbltransportadora.Close;
-      tbltransportadora.Open;
-
-      tblvendedor.Close;
-      tblvendedor.open;
-
-      tblrepresentante.Close;
-      tblrepresentante.Open;
 
       QryCadastro.Close;
       QryCadastro.SQL.Clear;

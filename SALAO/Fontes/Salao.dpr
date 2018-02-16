@@ -10,7 +10,9 @@ uses
   Classe.Conection in 'Controller\Classe.Conection.pas',
   uFunction in 'Controller\uFunction.pas',
   Classe.PesquisaCadastro in 'Controller\Classe.PesquisaCadastro.pas',
-  uClasse.Cadastros in 'Controller\uClasse.Cadastros.pas';
+  uClasse.Cadastros in 'Controller\uClasse.Cadastros.pas',
+  Vcl.Themes,
+  Vcl.Styles;
 
 {$R *.res}
 

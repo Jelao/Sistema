@@ -22,7 +22,7 @@ uses
   Vcl.ExtCtrls,
   Vcl.ComCtrls,
   FireDAC.Comp.Client,
-  Classe.PesquisaCadastro, Vcl.Mask;
+  Classe.PesquisaCadastro, Vcl.Mask, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet;
 
 type
   TfrmCadastro_Cliente = class(TfrmCadastro)
@@ -45,7 +45,7 @@ type
     btnLimpar: TBitBtn;
     Label2: TLabel;
     DBEdit1: TDBEdit;
-    DataSource1: TDataSource;
+    dtsCadastro: TDataSource;
     Label3: TLabel;
     DBEdit2: TDBEdit;
     Label4: TLabel;
@@ -53,9 +53,7 @@ type
     Label5: TLabel;
     DBEdit4: TDBEdit;
     Label6: TLabel;
-    DBEdit5: TDBEdit;
     Label7: TLabel;
-    DBEdit6: TDBEdit;
     Label8: TLabel;
     DBEdit7: TDBEdit;
     Label9: TLabel;
@@ -63,7 +61,6 @@ type
     Label10: TLabel;
     DBEdit9: TDBEdit;
     Label11: TLabel;
-    DBEdit10: TDBEdit;
     Label12: TLabel;
     DBEdit11: TDBEdit;
     Label13: TLabel;
@@ -123,11 +120,8 @@ type
     Label47: TLabel;
     DBEdit39: TDBEdit;
     Label48: TLabel;
-    DBEdit40: TDBEdit;
     Label49: TLabel;
-    DBEdit41: TDBEdit;
     Label50: TLabel;
-    DBEdit42: TDBEdit;
     Label51: TLabel;
     DBEdit43: TDBEdit;
     Label52: TLabel;
@@ -158,11 +152,46 @@ type
     DBEdit56: TDBEdit;
     Label65: TLabel;
     DBImage1: TDBImage;
+    DBLookupComboBox1: TDBLookupComboBox;
+    QryCadastro: TFDQuery;
+    DBLookupComboBox2: TDBLookupComboBox;
+    DBLookupComboBox3: TDBLookupComboBox;
+    Label66: TLabel;
+    DBEdit5: TDBEdit;
+    DBEdit6: TDBEdit;
+    Label67: TLabel;
+    DBEdit10: TDBEdit;
+    Label68: TLabel;
+    DBEdit57: TDBEdit;
+    Label69: TLabel;
+    DBEdit58: TDBEdit;
+    Label70: TLabel;
+    DBEdit59: TDBEdit;
+    Label71: TLabel;
+    DBEdit60: TDBEdit;
+    Label72: TLabel;
+    DBEdit61: TDBEdit;
+    Label73: TLabel;
+    DBEdit62: TDBEdit;
+    Label74: TLabel;
+    DBLookupComboBox4: TDBLookupComboBox;
+    DBLookupComboBox5: TDBLookupComboBox;
+    DBLookupComboBox6: TDBLookupComboBox;
+    tbTipoCadastro: TFDTable;
+    dtsTipoCadastro: TDataSource;
+    tblSubTipoCadastro: TFDTable;
+    tblpais: TFDTable;
+    tblvendedor: TFDTable;
+    tbltransportadora: TFDTable;
+    dtsSubTipoCadastro: TDataSource;
+    dtsPais: TDataSource;
+    dtsTransportadora: TDataSource;
+    dtsVendedor: TDataSource;
+    tblrepresentante: TFDTable;
+    dtsRepresentante: TDataSource;
     procedure FormShow(Sender: TObject);
     procedure ediIdCadastroChange(Sender: TObject);
   private
-    QryCadastro : TFDQuery;
-    dtsCadastro : TDataSource;
   public
     Pesquisa : TPesquisaCadastro;
 
@@ -183,15 +212,6 @@ end;
 
 procedure TfrmCadastro_Cliente.FormShow(Sender: TObject);
 begin
-  if not(Assigned(QryCadastro)) then
-  begin
-    QryCadastro             := TFDQuery.Create(nil);
-    dtsCadastro             := TDataSource.Create(nil);
-    dtsCadastro.DataSet     := QryCadastro;
-    DBNavigator1.DataSource := dtsCadastro;
-    DBGrid1.DataSource      := dtsCadastro;
-  end;
-
   PesquisaCad;
 end;
 
@@ -204,7 +224,14 @@ begin
   Pesquisa.sTipoFje           := cbxTipo.Text;
   Pesquisa.sRazao             := ediRazao.Text;
   Pesquisa.sFantasia          := ediFantasia.Text;
-  Pesquisa.SqlOpen(QryCadastro,Pesquisa);
+  Pesquisa.SqlOpen(QryCadastro,
+                   tbTipoCadastro,
+                   tblSubTipoCadastro,
+                   tblpais,
+                   tbltransportadora,
+                   tblvendedor,
+                   tblrepresentante,
+                   Pesquisa);
 end;
 
 end.

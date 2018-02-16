@@ -1,17 +1,33 @@
 inherited frmCadastro_Cliente: TfrmCadastro_Cliente
   Caption = 'CADASTROS'
+  ClientHeight = 671
   OnShow = FormShow
-  ExplicitTop = -207
+  ExplicitWidth = 1386
+  ExplicitHeight = 710
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl1: TPageControl
+    Height = 671
     ActivePage = TabSheet2
-    ExplicitLeft = 8
-    ExplicitTop = 8
+    ExplicitHeight = 671
     inherited TabSheet1: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 27
+      ExplicitWidth = 1362
+      ExplicitHeight = 640
+      inherited Panel1: TPanel
+        Top = 575
+        ExplicitTop = 575
+      end
+      inherited Panel2: TPanel
+        Height = 478
+        ExplicitHeight = 478
+        inherited DBGrid1: TDBGrid
+          Height = 476
+          DataSource = dtsCadastro
+        end
+      end
       inherited Panel3: TPanel
-        ExplicitLeft = 88
-        ExplicitTop = 232
         object Label39: TLabel
           Left = 9
           Top = 2
@@ -266,14 +282,19 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
       end
     end
     inherited TabSheet2: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 27
+      ExplicitWidth = 1362
+      ExplicitHeight = 640
       inherited Panel4: TPanel
         inherited DBNavigator1: TDBNavigator
+          DataSource = dtsCadastro
           Hints.Strings = ()
         end
       end
       inherited Panel5: TPanel
-        ExplicitLeft = 1
-        ExplicitTop = 70
+        Height = 575
+        ExplicitHeight = 575
         object Label2: TLabel
           Left = 16
           Top = 8
@@ -312,7 +333,6 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 72
           Height = 13
           Caption = 'idTipoCadastro'
-          FocusControl = DBEdit5
         end
         object Label7: TLabel
           Left = 1032
@@ -320,7 +340,6 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 90
           Height = 13
           Caption = 'idSubTipoCadastro'
-          FocusControl = DBEdit6
         end
         object Label8: TLabel
           Left = 16
@@ -331,8 +350,8 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           FocusControl = DBEdit7
         end
         object Label9: TLabel
-          Left = 16
-          Top = 88
+          Left = 570
+          Top = 48
           Width = 46
           Height = 13
           Caption = 'sFantasia'
@@ -340,87 +359,86 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
         end
         object Label10: TLabel
           Left = 16
-          Top = 128
+          Top = 132
           Width = 53
           Height = 13
           Caption = 'idEndereco'
           FocusControl = DBEdit9
         end
         object Label11: TLabel
-          Left = 168
-          Top = 128
+          Left = 1194
+          Top = 8
           Width = 27
           Height = 13
           Caption = 'idPais'
-          FocusControl = DBEdit10
         end
         object Label12: TLabel
           Left = 16
-          Top = 176
+          Top = 180
           Width = 82
           Height = 13
           Caption = 'sFoneResidencial'
           FocusControl = DBEdit11
         end
         object Label13: TLabel
-          Left = 168
-          Top = 176
+          Left = 156
+          Top = 180
           Width = 75
           Height = 13
           Caption = 'sFoneComercial'
           FocusControl = DBEdit12
         end
         object Label14: TLabel
-          Left = 438
-          Top = 176
+          Left = 296
+          Top = 180
           Width = 68
           Height = 13
           Caption = 'sFoneContato'
           FocusControl = DBEdit13
         end
         object Label15: TLabel
-          Left = 718
-          Top = 176
+          Left = 436
+          Top = 180
           Width = 38
           Height = 13
           Caption = 'sCelular'
           FocusControl = DBEdit14
         end
         object Label16: TLabel
-          Left = 988
-          Top = 176
+          Left = 576
+          Top = 180
           Width = 23
           Height = 13
           Caption = 'sFax'
           FocusControl = DBEdit15
         end
         object Label17: TLabel
-          Left = 16
-          Top = 216
+          Left = 728
+          Top = 180
           Width = 44
           Height = 13
           Caption = 'sContato'
           FocusControl = DBEdit16
         end
         object Label18: TLabel
-          Left = 168
-          Top = 216
+          Left = 1017
+          Top = 180
           Width = 29
           Height = 13
           Caption = 'sEmail'
           FocusControl = DBEdit17
         end
         object Label19: TLabel
-          Left = 438
-          Top = 216
+          Left = 16
+          Top = 225
           Width = 23
           Height = 13
           Caption = 'sSite'
           FocusControl = DBEdit18
         end
         object Label20: TLabel
-          Left = 16
-          Top = 256
+          Left = 1017
+          Top = 225
           Width = 51
           Height = 13
           Caption = 'sFacebook'
@@ -428,307 +446,376 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
         end
         object Label21: TLabel
           Left = 16
-          Top = 296
+          Top = 268
           Width = 54
           Height = 13
           Caption = 'sInstagram'
           FocusControl = DBEdit20
         end
         object Label22: TLabel
-          Left = 718
-          Top = 216
+          Left = 296
+          Top = 225
           Width = 43
           Height = 13
           Caption = 'sLinkedin'
           FocusControl = DBEdit21
         end
         object Label23: TLabel
-          Left = 718
-          Top = 256
+          Left = 576
+          Top = 225
           Width = 39
           Height = 13
           Caption = 'sTwitter'
           FocusControl = DBEdit22
         end
         object Label24: TLabel
-          Left = 122
-          Top = 296
+          Left = 576
+          Top = 268
           Width = 54
           Height = 13
           Caption = 'sWhatsapp'
           FocusControl = DBEdit23
         end
         object Label25: TLabel
-          Left = 228
-          Top = 296
+          Left = 296
+          Top = 268
           Width = 45
           Height = 13
           Caption = 'sYoutube'
           FocusControl = DBEdit24
         end
         object Label26: TLabel
-          Left = 228
-          Top = 336
+          Left = 716
+          Top = 268
           Width = 50
           Height = 13
           Caption = 'sSnapchat'
           FocusControl = DBEdit25
         end
         object Label27: TLabel
-          Left = 376
-          Top = 304
+          Left = 1194
+          Top = 48
           Width = 71
           Height = 13
           Caption = 'dDatacadastro'
           FocusControl = DBEdit26
         end
         object Label28: TLabel
-          Left = 376
-          Top = 344
+          Left = 16
+          Top = 312
           Width = 70
           Height = 13
           Caption = 'dDataempresa'
           FocusControl = DBEdit27
         end
         object Label29: TLabel
-          Left = 376
-          Top = 384
+          Left = 156
+          Top = 312
           Width = 83
           Height = 13
           Caption = 'dDatanascimento'
           FocusControl = DBEdit28
         end
         object Label30: TLabel
-          Left = 568
-          Top = 304
+          Left = 16
+          Top = 86
           Width = 18
           Height = 13
           Caption = 'sRg'
           FocusControl = DBEdit29
         end
         object Label31: TLabel
-          Left = 568
-          Top = 344
+          Left = 392
+          Top = 86
           Width = 55
           Height = 13
           Caption = 'sEstadocivil'
           FocusControl = DBEdit30
         end
         object Label32: TLabel
-          Left = 568
-          Top = 384
+          Left = 296
+          Top = 312
           Width = 44
           Height = 13
           Caption = 'sProficao'
           FocusControl = DBEdit31
         end
         object Label33: TLabel
-          Left = 674
-          Top = 384
+          Left = 570
+          Top = 86
           Width = 66
           Height = 13
           Caption = 'sNaturalidade'
           FocusControl = DBEdit32
         end
         object Label34: TLabel
-          Left = 32
-          Top = 344
+          Left = 286
+          Top = 86
           Width = 71
           Height = 13
           Caption = 'sNacionalidade'
           FocusControl = DBEdit33
         end
         object Label35: TLabel
-          Left = 32
-          Top = 384
+          Left = 1194
+          Top = 86
           Width = 36
           Height = 13
           Caption = 'sStatus'
           FocusControl = DBEdit34
         end
         object Label36: TLabel
-          Left = 32
-          Top = 424
+          Left = 832
+          Top = 312
           Width = 62
           Height = 13
           Caption = 'sIndicadopor'
           FocusControl = DBEdit35
         end
         object Label37: TLabel
-          Left = 32
-          Top = 464
+          Left = 676
+          Top = 86
           Width = 29
           Height = 13
           Caption = 'sSexo'
           FocusControl = DBEdit36
         end
         object Label38: TLabel
-          Left = 864
-          Top = 312
+          Left = 803
+          Top = 86
           Width = 15
           Height = 13
           Caption = 'sIe'
           FocusControl = DBEdit37
         end
         object Label41: TLabel
-          Left = 864
-          Top = 352
+          Left = 994
+          Top = 86
           Width = 17
           Height = 13
           Caption = 'sIm'
           FocusControl = DBEdit38
         end
         object Label47: TLabel
-          Left = 864
-          Top = 392
+          Left = 16
+          Top = 398
           Width = 24
           Height = 13
           Caption = 'sObs'
           FocusControl = DBEdit39
         end
         object Label48: TLabel
-          Left = 216
-          Top = 400
+          Left = 402
+          Top = 312
           Width = 61
           Height = 13
           Caption = 'idTransporte'
-          FocusControl = DBEdit40
         end
         object Label49: TLabel
-          Left = 216
-          Top = 440
+          Left = 542
+          Top = 312
           Width = 54
           Height = 13
           Caption = 'idVendedor'
-          FocusControl = DBEdit41
         end
         object Label50: TLabel
-          Left = 216
-          Top = 480
+          Left = 682
+          Top = 312
           Width = 74
           Height = 13
           Caption = 'idRepresentate'
-          FocusControl = DBEdit42
         end
         object Label51: TLabel
-          Left = 216
-          Top = 520
+          Left = 1017
+          Top = 352
           Width = 54
           Height = 13
           Caption = 'flLimitecred'
           FocusControl = DBEdit43
         end
         object Label52: TLabel
-          Left = 216
-          Top = 560
+          Left = 1017
+          Top = 398
           Width = 77
           Height = 13
           Caption = 'flSaldodecredito'
           FocusControl = DBEdit44
         end
         object Label53: TLabel
-          Left = 864
-          Top = 432
+          Left = 1017
+          Top = 312
           Width = 37
           Height = 13
           Caption = 'flCaptal'
           FocusControl = DBEdit45
         end
         object Label54: TLabel
-          Left = 392
-          Top = 432
+          Left = 1017
+          Top = 265
           Width = 58
           Height = 13
           Caption = 'sProcurador'
           FocusControl = DBEdit46
         end
         object Label55: TLabel
-          Left = 520
-          Top = 440
+          Left = 16
+          Top = 352
           Width = 75
           Height = 13
           Caption = 'idCondicoespg1'
           FocusControl = DBEdit47
         end
         object Label56: TLabel
-          Left = 520
-          Top = 480
+          Left = 105
+          Top = 352
           Width = 75
           Height = 13
           Caption = 'idCondicoespg2'
           FocusControl = DBEdit48
         end
         object Label57: TLabel
-          Left = 520
-          Top = 520
+          Left = 186
+          Top = 352
           Width = 75
           Height = 13
           Caption = 'idCondicoespg3'
           FocusControl = DBEdit49
         end
         object Label58: TLabel
-          Left = 520
-          Top = 560
+          Left = 267
+          Top = 352
           Width = 75
           Height = 13
           Caption = 'idCondicoespg4'
           FocusControl = DBEdit50
         end
         object Label59: TLabel
-          Left = 520
-          Top = 600
+          Left = 348
+          Top = 352
           Width = 75
           Height = 13
           Caption = 'idCondicoespg5'
           FocusControl = DBEdit51
         end
         object Label60: TLabel
-          Left = 696
-          Top = 440
+          Left = 429
+          Top = 352
           Width = 75
           Height = 13
           Caption = 'idCondicoespg6'
           FocusControl = DBEdit52
         end
         object Label61: TLabel
-          Left = 696
-          Top = 480
+          Left = 512
+          Top = 352
           Width = 75
           Height = 13
           Caption = 'idCondicoespg7'
           FocusControl = DBEdit53
         end
         object Label62: TLabel
-          Left = 696
-          Top = 520
+          Left = 593
+          Top = 352
           Width = 75
           Height = 13
           Caption = 'idCondicoespg8'
           FocusControl = DBEdit54
         end
         object Label63: TLabel
-          Left = 696
-          Top = 560
+          Left = 674
+          Top = 352
           Width = 75
           Height = 13
           Caption = 'idCondicoespg9'
           FocusControl = DBEdit55
         end
         object Label64: TLabel
-          Left = 696
-          Top = 600
+          Left = 755
+          Top = 352
           Width = 81
           Height = 13
           Caption = 'idCondicoespg10'
           FocusControl = DBEdit56
         end
         object Label65: TLabel
-          Left = 864
-          Top = 480
+          Left = 1280
+          Top = 422
           Width = 27
           Height = 13
           Caption = 'sFoto'
           FocusControl = DBImage1
+        end
+        object Label66: TLabel
+          Left = 156
+          Top = 129
+          Width = 50
+          Height = 13
+          Caption = 'sEndereco'
+          FocusControl = DBEdit5
+        end
+        object Label67: TLabel
+          Left = 296
+          Top = 132
+          Width = 42
+          Height = 13
+          Caption = 'sNumero'
+          FocusControl = DBEdit6
+        end
+        object Label68: TLabel
+          Left = 436
+          Top = 132
+          Width = 70
+          Height = 13
+          Caption = 'sComplemento'
+          FocusControl = DBEdit10
+        end
+        object Label69: TLabel
+          Left = 576
+          Top = 132
+          Width = 24
+          Height = 13
+          Caption = 'sCep'
+          FocusControl = DBEdit57
+        end
+        object Label70: TLabel
+          Left = 728
+          Top = 132
+          Width = 33
+          Height = 13
+          Caption = 'sBairro'
+          FocusControl = DBEdit58
+        end
+        object Label71: TLabel
+          Left = 877
+          Top = 132
+          Width = 36
+          Height = 13
+          Caption = 'scidade'
+          FocusControl = DBEdit59
+        end
+        object Label72: TLabel
+          Left = 1017
+          Top = 132
+          Width = 51
+          Height = 13
+          Caption = 'idMunicipio'
+          FocusControl = DBEdit60
+        end
+        object Label73: TLabel
+          Left = 1157
+          Top = 132
+          Width = 48
+          Height = 13
+          Caption = 'sMunicipio'
+          FocusControl = DBEdit61
+        end
+        object Label74: TLabel
+          Left = 1297
+          Top = 132
+          Width = 18
+          Height = 13
+          Caption = 'sUF'
+          FocusControl = DBEdit62
         end
         object DBEdit1: TDBEdit
           Left = 16
@@ -736,7 +823,8 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 134
           Height = 21
           DataField = 'idCadastro'
-          DataSource = DataSource1
+          DataSource = dtsCadastro
+          Enabled = False
           TabOrder = 0
         end
         object DBEdit2: TDBEdit
@@ -745,7 +833,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 264
           Height = 21
           DataField = 'sCodigoCadastro'
-          DataSource = DataSource1
+          DataSource = dtsCadastro
           TabOrder = 1
         end
         object DBEdit3: TDBEdit
@@ -754,7 +842,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 108
           Height = 21
           DataField = 'sTipoFje'
-          DataSource = DataSource1
+          DataSource = dtsCadastro
           TabOrder = 2
         end
         object DBEdit4: TDBEdit
@@ -763,492 +851,657 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 264
           Height = 21
           DataField = 'sCnpjCpfPassaporte'
-          DataSource = DataSource1
+          DataSource = dtsCadastro
           TabOrder = 3
-        end
-        object DBEdit5: TDBEdit
-          Left = 848
-          Top = 24
-          Width = 134
-          Height = 21
-          DataField = 'idTipoCadastro'
-          DataSource = DataSource1
-          TabOrder = 4
-        end
-        object DBEdit6: TDBEdit
-          Left = 1032
-          Top = 24
-          Width = 134
-          Height = 21
-          DataField = 'idSubTipoCadastro'
-          DataSource = DataSource1
-          TabOrder = 5
         end
         object DBEdit7: TDBEdit
           Left = 16
           Top = 64
-          Width = 784
+          Width = 548
           Height = 21
           DataField = 'sRazao'
-          DataSource = DataSource1
-          TabOrder = 6
+          DataSource = dtsCadastro
+          TabOrder = 4
         end
         object DBEdit8: TDBEdit
-          Left = 16
-          Top = 104
-          Width = 1150
+          Left = 570
+          Top = 64
+          Width = 607
           Height = 21
           DataField = 'sFantasia'
-          DataSource = DataSource1
-          TabOrder = 7
+          DataSource = dtsCadastro
+          TabOrder = 5
         end
         object DBEdit9: TDBEdit
           Left = 16
-          Top = 144
+          Top = 148
           Width = 134
           Height = 21
           DataField = 'idEndereco'
-          DataSource = DataSource1
-          TabOrder = 8
-        end
-        object DBEdit10: TDBEdit
-          Left = 168
-          Top = 144
-          Width = 134
-          Height = 21
-          DataField = 'idPais'
-          DataSource = DataSource1
-          TabOrder = 9
+          DataSource = dtsCadastro
+          TabOrder = 6
         end
         object DBEdit11: TDBEdit
           Left = 16
-          Top = 192
-          Width = 30
-          Height = 21
-          DataField = 'sFoneResidencial'
-          DataSource = DataSource1
-          TabOrder = 10
-        end
-        object DBEdit12: TDBEdit
-          Left = 168
-          Top = 192
-          Width = 264
-          Height = 21
-          DataField = 'sFoneComercial'
-          DataSource = DataSource1
-          TabOrder = 11
-        end
-        object DBEdit13: TDBEdit
-          Left = 438
-          Top = 192
-          Width = 264
-          Height = 21
-          DataField = 'sFoneContato'
-          DataSource = DataSource1
-          TabOrder = 12
-        end
-        object DBEdit14: TDBEdit
-          Left = 718
-          Top = 192
-          Width = 264
-          Height = 21
-          DataField = 'sCelular'
-          DataSource = DataSource1
-          TabOrder = 13
-        end
-        object DBEdit15: TDBEdit
-          Left = 988
-          Top = 192
-          Width = 264
-          Height = 21
-          DataField = 'sFax'
-          DataSource = DataSource1
-          TabOrder = 14
-        end
-        object DBEdit16: TDBEdit
-          Left = 16
-          Top = 232
+          Top = 196
           Width = 134
           Height = 21
+          DataField = 'sFoneResidencial'
+          DataSource = dtsCadastro
+          TabOrder = 7
+        end
+        object DBEdit12: TDBEdit
+          Left = 156
+          Top = 196
+          Width = 134
+          Height = 21
+          DataField = 'sFoneComercial'
+          DataSource = dtsCadastro
+          TabOrder = 8
+        end
+        object DBEdit13: TDBEdit
+          Left = 296
+          Top = 196
+          Width = 134
+          Height = 21
+          DataField = 'sFoneContato'
+          DataSource = dtsCadastro
+          TabOrder = 9
+        end
+        object DBEdit14: TDBEdit
+          Left = 436
+          Top = 196
+          Width = 134
+          Height = 21
+          DataField = 'sCelular'
+          DataSource = dtsCadastro
+          TabOrder = 10
+        end
+        object DBEdit15: TDBEdit
+          Left = 576
+          Top = 196
+          Width = 134
+          Height = 21
+          DataField = 'sFax'
+          DataSource = dtsCadastro
+          TabOrder = 11
+        end
+        object DBEdit16: TDBEdit
+          Left = 728
+          Top = 196
+          Width = 283
+          Height = 21
           DataField = 'sContato'
-          DataSource = DataSource1
-          TabOrder = 15
+          DataSource = dtsCadastro
+          TabOrder = 12
         end
         object DBEdit17: TDBEdit
-          Left = 168
-          Top = 232
-          Width = 264
+          Left = 1017
+          Top = 196
+          Width = 328
           Height = 21
           DataField = 'sEmail'
-          DataSource = DataSource1
-          TabOrder = 16
+          DataSource = dtsCadastro
+          TabOrder = 13
         end
         object DBEdit18: TDBEdit
-          Left = 438
-          Top = 232
-          Width = 264
+          Left = 16
+          Top = 241
+          Width = 274
           Height = 21
           DataField = 'sSite'
-          DataSource = DataSource1
-          TabOrder = 17
+          DataSource = dtsCadastro
+          TabOrder = 14
         end
         object DBEdit19: TDBEdit
-          Left = 16
-          Top = 272
-          Width = 686
+          Left = 1017
+          Top = 241
+          Width = 328
           Height = 21
           DataField = 'sFacebook'
-          DataSource = DataSource1
-          TabOrder = 18
+          DataSource = dtsCadastro
+          TabOrder = 15
         end
         object DBEdit20: TDBEdit
           Left = 16
-          Top = 312
-          Width = 100
+          Top = 284
+          Width = 274
           Height = 21
           DataField = 'sInstagram'
-          DataSource = DataSource1
-          TabOrder = 19
+          DataSource = dtsCadastro
+          TabOrder = 16
         end
         object DBEdit21: TDBEdit
-          Left = 718
-          Top = 232
-          Width = 264
+          Left = 296
+          Top = 241
+          Width = 274
           Height = 21
           DataField = 'sLinkedin'
-          DataSource = DataSource1
-          TabOrder = 20
+          DataSource = dtsCadastro
+          TabOrder = 17
         end
         object DBEdit22: TDBEdit
-          Left = 718
-          Top = 272
-          Width = 264
+          Left = 576
+          Top = 241
+          Width = 435
           Height = 21
           DataField = 'sTwitter'
-          DataSource = DataSource1
-          TabOrder = 21
+          DataSource = dtsCadastro
+          TabOrder = 18
         end
         object DBEdit23: TDBEdit
-          Left = 122
-          Top = 312
-          Width = 100
-          Height = 21
-          DataField = 'sWhatsapp'
-          DataSource = DataSource1
-          TabOrder = 22
-        end
-        object DBEdit24: TDBEdit
-          Left = 228
-          Top = 312
-          Width = 100
-          Height = 21
-          DataField = 'sYoutube'
-          DataSource = DataSource1
-          TabOrder = 23
-        end
-        object DBEdit25: TDBEdit
-          Left = 228
-          Top = 352
-          Width = 100
-          Height = 21
-          DataField = 'sSnapchat'
-          DataSource = DataSource1
-          TabOrder = 24
-        end
-        object DBEdit26: TDBEdit
-          Left = 376
-          Top = 320
+          Left = 576
+          Top = 284
           Width = 134
           Height = 21
+          DataField = 'sWhatsapp'
+          DataSource = dtsCadastro
+          TabOrder = 19
+        end
+        object DBEdit24: TDBEdit
+          Left = 296
+          Top = 284
+          Width = 274
+          Height = 21
+          DataField = 'sYoutube'
+          DataSource = dtsCadastro
+          TabOrder = 20
+        end
+        object DBEdit25: TDBEdit
+          Left = 716
+          Top = 284
+          Width = 295
+          Height = 21
+          DataField = 'sSnapchat'
+          DataSource = dtsCadastro
+          TabOrder = 21
+        end
+        object DBEdit26: TDBEdit
+          Left = 1194
+          Top = 64
+          Width = 151
+          Height = 21
           DataField = 'dDatacadastro'
-          DataSource = DataSource1
-          TabOrder = 25
+          DataSource = dtsCadastro
+          TabOrder = 22
         end
         object DBEdit27: TDBEdit
-          Left = 376
-          Top = 360
+          Left = 16
+          Top = 328
           Width = 134
           Height = 21
           DataField = 'dDataempresa'
-          DataSource = DataSource1
-          TabOrder = 26
+          DataSource = dtsCadastro
+          TabOrder = 23
         end
         object DBEdit28: TDBEdit
-          Left = 376
-          Top = 400
+          Left = 156
+          Top = 328
           Width = 134
           Height = 21
           DataField = 'dDatanascimento'
-          DataSource = DataSource1
-          TabOrder = 27
+          DataSource = dtsCadastro
+          TabOrder = 24
         end
         object DBEdit29: TDBEdit
-          Left = 568
-          Top = 320
+          Left = 16
+          Top = 102
           Width = 264
           Height = 21
           DataField = 'sRg'
-          DataSource = DataSource1
-          TabOrder = 28
+          DataSource = dtsCadastro
+          TabOrder = 25
         end
         object DBEdit30: TDBEdit
-          Left = 568
-          Top = 360
-          Width = 173
+          Left = 392
+          Top = 102
+          Width = 172
           Height = 21
           DataField = 'sEstadocivil'
-          DataSource = DataSource1
-          TabOrder = 29
+          DataSource = dtsCadastro
+          TabOrder = 26
         end
         object DBEdit31: TDBEdit
-          Left = 568
-          Top = 400
+          Left = 296
+          Top = 328
           Width = 100
           Height = 21
           DataField = 'sProficao'
-          DataSource = DataSource1
-          TabOrder = 30
+          DataSource = dtsCadastro
+          TabOrder = 27
         end
         object DBEdit32: TDBEdit
-          Left = 674
-          Top = 400
+          Left = 570
+          Top = 102
           Width = 100
           Height = 21
           DataField = 'sNaturalidade'
-          DataSource = DataSource1
-          TabOrder = 31
+          DataSource = dtsCadastro
+          TabOrder = 28
         end
         object DBEdit33: TDBEdit
-          Left = 32
-          Top = 360
+          Left = 286
+          Top = 102
           Width = 100
           Height = 21
           DataField = 'sNacionalidade'
-          DataSource = DataSource1
-          TabOrder = 32
+          DataSource = dtsCadastro
+          TabOrder = 29
         end
         object DBEdit34: TDBEdit
-          Left = 32
-          Top = 400
-          Width = 134
+          Left = 1194
+          Top = 102
+          Width = 151
           Height = 21
           DataField = 'sStatus'
-          DataSource = DataSource1
-          TabOrder = 33
+          DataSource = dtsCadastro
+          TabOrder = 30
         end
         object DBEdit35: TDBEdit
-          Left = 32
-          Top = 440
-          Width = 100
+          Left = 832
+          Top = 328
+          Width = 179
           Height = 21
           DataField = 'sIndicadopor'
-          DataSource = DataSource1
-          TabOrder = 34
+          DataSource = dtsCadastro
+          TabOrder = 31
         end
         object DBEdit36: TDBEdit
-          Left = 32
-          Top = 480
+          Left = 676
+          Top = 102
           Width = 121
           Height = 21
           DataField = 'sSexo'
-          DataSource = DataSource1
-          TabOrder = 35
+          DataSource = dtsCadastro
+          TabOrder = 32
         end
         object DBEdit37: TDBEdit
-          Left = 864
-          Top = 328
+          Left = 803
+          Top = 102
           Width = 186
           Height = 21
           DataField = 'sIe'
-          DataSource = DataSource1
-          TabOrder = 36
+          DataSource = dtsCadastro
+          TabOrder = 33
         end
         object DBEdit38: TDBEdit
-          Left = 864
-          Top = 368
-          Width = 186
+          Left = 994
+          Top = 102
+          Width = 183
           Height = 21
           DataField = 'sIm'
-          DataSource = DataSource1
-          TabOrder = 37
+          DataSource = dtsCadastro
+          TabOrder = 34
         end
         object DBEdit39: TDBEdit
-          Left = 864
-          Top = 408
-          Width = 65004
+          Left = 16
+          Top = 414
+          Width = 995
           Height = 21
           DataField = 'sObs'
-          DataSource = DataSource1
-          TabOrder = 38
-        end
-        object DBEdit40: TDBEdit
-          Left = 216
-          Top = 416
-          Width = 134
-          Height = 21
-          DataField = 'idTransporte'
-          DataSource = DataSource1
-          TabOrder = 39
-        end
-        object DBEdit41: TDBEdit
-          Left = 216
-          Top = 456
-          Width = 134
-          Height = 21
-          DataField = 'idVendedor'
-          DataSource = DataSource1
-          TabOrder = 40
-        end
-        object DBEdit42: TDBEdit
-          Left = 216
-          Top = 496
-          Width = 134
-          Height = 21
-          DataField = 'idRepresentate'
-          DataSource = DataSource1
-          TabOrder = 41
+          DataSource = dtsCadastro
+          TabOrder = 35
         end
         object DBEdit43: TDBEdit
-          Left = 216
-          Top = 536
+          Left = 1017
+          Top = 368
           Width = 199
           Height = 21
           DataField = 'flLimitecred'
-          DataSource = DataSource1
-          TabOrder = 42
+          DataSource = dtsCadastro
+          TabOrder = 36
         end
         object DBEdit44: TDBEdit
-          Left = 216
-          Top = 576
+          Left = 1017
+          Top = 414
           Width = 199
           Height = 21
           DataField = 'flSaldodecredito'
-          DataSource = DataSource1
-          TabOrder = 43
+          DataSource = dtsCadastro
+          TabOrder = 37
         end
         object DBEdit45: TDBEdit
-          Left = 864
-          Top = 448
-          Width = 199
+          Left = 1017
+          Top = 328
+          Width = 217
           Height = 21
           DataField = 'flCaptal'
-          DataSource = DataSource1
-          TabOrder = 44
+          DataSource = dtsCadastro
+          TabOrder = 38
         end
         object DBEdit46: TDBEdit
-          Left = 392
-          Top = 448
-          Width = 100
+          Left = 1017
+          Top = 284
+          Width = 328
           Height = 21
           DataField = 'sProcurador'
-          DataSource = DataSource1
-          TabOrder = 45
+          DataSource = dtsCadastro
+          TabOrder = 39
         end
         object DBEdit47: TDBEdit
-          Left = 520
-          Top = 456
-          Width = 134
+          Left = 16
+          Top = 368
+          Width = 75
           Height = 21
           DataField = 'idCondicoespg1'
-          DataSource = DataSource1
-          TabOrder = 46
+          DataSource = dtsCadastro
+          TabOrder = 40
         end
         object DBEdit48: TDBEdit
-          Left = 520
-          Top = 496
-          Width = 134
+          Left = 105
+          Top = 368
+          Width = 75
           Height = 21
           DataField = 'idCondicoespg2'
-          DataSource = DataSource1
-          TabOrder = 47
+          DataSource = dtsCadastro
+          TabOrder = 41
         end
         object DBEdit49: TDBEdit
-          Left = 520
-          Top = 536
-          Width = 134
+          Left = 186
+          Top = 368
+          Width = 75
           Height = 21
           DataField = 'idCondicoespg3'
-          DataSource = DataSource1
-          TabOrder = 48
+          DataSource = dtsCadastro
+          TabOrder = 42
         end
         object DBEdit50: TDBEdit
-          Left = 520
-          Top = 576
-          Width = 134
+          Left = 267
+          Top = 368
+          Width = 75
           Height = 21
           DataField = 'idCondicoespg4'
-          DataSource = DataSource1
-          TabOrder = 49
+          DataSource = dtsCadastro
+          TabOrder = 43
         end
         object DBEdit51: TDBEdit
-          Left = 520
-          Top = 616
-          Width = 134
+          Left = 348
+          Top = 368
+          Width = 75
           Height = 21
           DataField = 'idCondicoespg5'
-          DataSource = DataSource1
-          TabOrder = 50
+          DataSource = dtsCadastro
+          TabOrder = 44
         end
         object DBEdit52: TDBEdit
-          Left = 696
-          Top = 456
-          Width = 134
+          Left = 429
+          Top = 368
+          Width = 77
           Height = 21
           DataField = 'idCondicoespg6'
-          DataSource = DataSource1
-          TabOrder = 51
+          DataSource = dtsCadastro
+          TabOrder = 45
         end
         object DBEdit53: TDBEdit
-          Left = 696
-          Top = 496
-          Width = 134
+          Left = 512
+          Top = 368
+          Width = 75
           Height = 21
           DataField = 'idCondicoespg7'
-          DataSource = DataSource1
-          TabOrder = 52
+          DataSource = dtsCadastro
+          TabOrder = 46
         end
         object DBEdit54: TDBEdit
-          Left = 696
-          Top = 536
-          Width = 134
+          Left = 593
+          Top = 368
+          Width = 75
           Height = 21
           DataField = 'idCondicoespg8'
-          DataSource = DataSource1
-          TabOrder = 53
+          DataSource = dtsCadastro
+          TabOrder = 47
         end
         object DBEdit55: TDBEdit
-          Left = 696
-          Top = 576
-          Width = 134
+          Left = 674
+          Top = 368
+          Width = 75
           Height = 21
           DataField = 'idCondicoespg9'
-          DataSource = DataSource1
-          TabOrder = 54
+          DataSource = dtsCadastro
+          TabOrder = 48
         end
         object DBEdit56: TDBEdit
-          Left = 696
-          Top = 616
-          Width = 134
+          Left = 755
+          Top = 368
+          Width = 81
           Height = 21
           DataField = 'idCondicoespg10'
-          DataSource = DataSource1
-          TabOrder = 55
+          DataSource = dtsCadastro
+          TabOrder = 49
         end
         object DBImage1: TDBImage
-          Left = 864
-          Top = 496
+          Left = 1240
+          Top = 311
           Width = 105
           Height = 105
           DataField = 'sFoto'
-          DataSource = DataSource1
+          DataSource = dtsCadastro
+          TabOrder = 50
+        end
+        object DBLookupComboBox1: TDBLookupComboBox
+          Left = 848
+          Top = 24
+          Width = 145
+          Height = 21
+          DataField = 'idTipoCadastro'
+          DataSource = dtsCadastro
+          KeyField = 'idTipoCadastro'
+          ListField = 'sDescricao'
+          ListSource = dtsTipoCadastro
+          TabOrder = 51
+        end
+        object DBLookupComboBox2: TDBLookupComboBox
+          Left = 1032
+          Top = 24
+          Width = 145
+          Height = 21
+          DataField = 'idSubtipoCadastro'
+          DataSource = dtsCadastro
+          KeyField = 'idSubtipoCadastro'
+          ListField = 'sDescricao'
+          ListSource = dtsSubTipoCadastro
+          TabOrder = 52
+        end
+        object DBLookupComboBox3: TDBLookupComboBox
+          Left = 1194
+          Top = 24
+          Width = 151
+          Height = 21
+          DataField = 'idPais'
+          DataSource = dtsCadastro
+          KeyField = 'idPais'
+          ListField = 'sDescricao'
+          ListSource = dtsPais
+          TabOrder = 53
+        end
+        object DBEdit5: TDBEdit
+          Left = 156
+          Top = 148
+          Width = 134
+          Height = 21
+          DataField = 'idEndereco'
+          DataSource = dtsCadastro
+          TabOrder = 54
+        end
+        object DBEdit6: TDBEdit
+          Left = 296
+          Top = 148
+          Width = 134
+          Height = 21
+          DataField = 'idEndereco'
+          DataSource = dtsCadastro
+          TabOrder = 55
+        end
+        object DBEdit10: TDBEdit
+          Left = 436
+          Top = 148
+          Width = 134
+          Height = 21
+          DataField = 'idEndereco'
+          DataSource = dtsCadastro
           TabOrder = 56
+        end
+        object DBEdit57: TDBEdit
+          Left = 576
+          Top = 148
+          Width = 134
+          Height = 21
+          DataField = 'idEndereco'
+          DataSource = dtsCadastro
+          TabOrder = 57
+        end
+        object DBEdit58: TDBEdit
+          Left = 728
+          Top = 148
+          Width = 134
+          Height = 21
+          DataField = 'idEndereco'
+          DataSource = dtsCadastro
+          TabOrder = 58
+        end
+        object DBEdit59: TDBEdit
+          Left = 877
+          Top = 148
+          Width = 134
+          Height = 21
+          DataField = 'idEndereco'
+          DataSource = dtsCadastro
+          TabOrder = 59
+        end
+        object DBEdit60: TDBEdit
+          Left = 1017
+          Top = 148
+          Width = 134
+          Height = 21
+          DataField = 'idEndereco'
+          DataSource = dtsCadastro
+          TabOrder = 60
+        end
+        object DBEdit61: TDBEdit
+          Left = 1157
+          Top = 148
+          Width = 134
+          Height = 21
+          DataField = 'idEndereco'
+          DataSource = dtsCadastro
+          TabOrder = 61
+        end
+        object DBEdit62: TDBEdit
+          Left = 1297
+          Top = 148
+          Width = 48
+          Height = 21
+          DataField = 'idEndereco'
+          DataSource = dtsCadastro
+          TabOrder = 62
+        end
+        object DBLookupComboBox4: TDBLookupComboBox
+          Left = 402
+          Top = 328
+          Width = 134
+          Height = 21
+          DataField = 'idTransporte'
+          DataSource = dtsCadastro
+          KeyField = 'idtransportadora'
+          ListField = 'sRazao'
+          ListSource = dtsTransportadora
+          TabOrder = 63
+        end
+        object DBLookupComboBox5: TDBLookupComboBox
+          Left = 542
+          Top = 328
+          Width = 134
+          Height = 21
+          DataField = 'idVendedor'
+          DataSource = dtsCadastro
+          KeyField = 'idVendedor'
+          ListField = 'sApelidoFuncionario'
+          ListSource = dtsVendedor
+          TabOrder = 64
+        end
+        object DBLookupComboBox6: TDBLookupComboBox
+          Left = 682
+          Top = 328
+          Width = 134
+          Height = 21
+          DataField = 'idRepresentate'
+          DataSource = dtsCadastro
+          KeyField = 'idrepresentante'
+          ListField = 'sRazao'
+          ListSource = dtsRepresentante
+          TabOrder = 65
         end
       end
     end
   end
-  object DataSource1: TDataSource
-    DataSet = DM_CADASTRO.FDTable1
-    Left = 680
-    Top = 384
+  object dtsCadastro: TDataSource
+    DataSet = QryCadastro
+    Left = 220
+    Top = 51
+  end
+  object QryCadastro: TFDQuery
+    Left = 220
+    Top = 4
+  end
+  object tbTipoCadastro: TFDTable
+    UpdateOptions.UpdateTableName = 'tbtipocadastro'
+    TableName = 'tbtipocadastro'
+    Left = 300
+    Top = 3
+  end
+  object dtsTipoCadastro: TDataSource
+    DataSet = tbTipoCadastro
+    Left = 300
+    Top = 51
+  end
+  object tblSubTipoCadastro: TFDTable
+    UpdateOptions.UpdateTableName = 'tbsubtipocadastro'
+    TableName = 'tbsubtipocadastro'
+    Left = 391
+    Top = 3
+  end
+  object tblpais: TFDTable
+    UpdateOptions.UpdateTableName = 'tbpais'
+    TableName = 'tbpais'
+    Left = 496
+  end
+  object tblvendedor: TFDTable
+    UpdateOptions.UpdateTableName = 'tbvendedor'
+    TableName = 'tbvendedor'
+    Left = 656
+  end
+  object tbltransportadora: TFDTable
+    UpdateOptions.UpdateTableName = 'tbtransportadora'
+    TableName = 'tbtransportadora'
+    Left = 568
+  end
+  object dtsSubTipoCadastro: TDataSource
+    DataSet = tblSubTipoCadastro
+    Left = 396
+    Top = 51
+  end
+  object dtsPais: TDataSource
+    DataSet = tblpais
+    Left = 495
+    Top = 51
+  end
+  object dtsTransportadora: TDataSource
+    DataSet = tbltransportadora
+    Left = 570
+    Top = 49
+  end
+  object dtsVendedor: TDataSource
+    DataSet = tblvendedor
+    Left = 660
+    Top = 51
+  end
+  object tblrepresentante: TFDTable
+    UpdateOptions.UpdateTableName = 'tbrepresentante'
+    TableName = 'tbrepresentante'
+    Left = 736
+  end
+  object dtsRepresentante: TDataSource
+    DataSet = tblrepresentante
+    Left = 739
+    Top = 49
   end
 end

@@ -12,7 +12,14 @@ type
     private
       class function  PreparaPesq(Pesquisa:TPesquisaCadastro):string;
     public
-     class procedure SqlOpen(QryCadastro:TFDQuery;Pesquisa:TPesquisaCadastro);
+     class procedure SqlOpen(QryCadastro:TFDQuery;
+                             tbTipoCadastro:TFDTable;
+                             tblSubTipoCadastro:TFDTable;
+                             tblpais:TFDTable;
+                             tbltransportadora:TFDTable;
+                             tblvendedor:TFDTable;
+                             tblrepresentante:TFDTable;
+                             Pesquisa:TPesquisaCadastro);
   end;
 
 implementation
@@ -72,7 +79,14 @@ begin
   Result := sPesquisa;
 end;
 
-class procedure TPesquisaCadastro.SqlOpen(QryCadastro:TFDQuery;Pesquisa:TPesquisaCadastro);
+class procedure TPesquisaCadastro.SqlOpen(QryCadastro:TFDQuery;
+                                          tbTipoCadastro:TFDTable;
+                                          tblSubTipoCadastro:TFDTable;
+                                          tblpais:TFDTable;
+                                          tbltransportadora:TFDTable;
+                                          tblvendedor:TFDTable;
+                                          tblrepresentante:TFDTable;
+                                          Pesquisa:TPesquisaCadastro);
 var
   sScript: string;
   SqlListScript: TStringList;
@@ -86,7 +100,32 @@ begin
     begin
       sScript      := SqlListScript.Text;
       SqlListScript.Free;
-      QryCadastro.Connection := DM_CADASTRO.CONN;
+      QryCadastro.Connection         := DM_CADASTRO.CONN;
+
+      tbTipoCadastro.Connection      := DM_CADASTRO.CONN;
+      tblSubTipoCadastro.Connection  := DM_CADASTRO.CONN;
+      tblpais.Connection             := DM_CADASTRO.CONN;
+      tbltransportadora.Connection   := DM_CADASTRO.CONN;
+      tblvendedor.Connection         := DM_CADASTRO.CONN;
+      tblrepresentante.Connection    := DM_CADASTRO.CONN;
+
+      tbTipoCadastro.Close;
+      tbTipoCadastro.Open;
+
+      tblSubTipoCadastro.Close;
+      tblSubTipoCadastro.Open;
+
+      tblpais.Close;
+      tblpais.Open;
+
+      tbltransportadora.Close;
+      tbltransportadora.Open;
+
+      tblvendedor.Close;
+      tblvendedor.open;
+
+      tblrepresentante.Close;
+      tblrepresentante.Open;
 
       QryCadastro.Close;
       QryCadastro.SQL.Clear;

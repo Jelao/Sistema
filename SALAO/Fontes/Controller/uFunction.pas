@@ -16,11 +16,15 @@ uses
   Registry,
   System.Contnrs,
   System.Generics.Collections,
-  Jpeg;
+  Jpeg,
+  Classe.ConsultaCNPJ,
+  Classe.ConsultaCEP;
 
 var
-  sLogin    : String;
-  sSenha    : String;
+  CNPJ        : TCNPJ;
+  ConsultaCep : TConsultaCep;
+  sLogin      : String;
+  sSenha      : String;
 
 function InputQuery_char(const ACaption, APrompt: string; var Value: string): Boolean;
 function InputBox_char(const ACaption, APrompt,ADefault: string): string;
@@ -37,6 +41,7 @@ function RetornaDataSAT(sData:string):string;
 function RetornaHoraSAT(sHora:string):string;
 function LastCampo(sText,sDelimiter:string):Boolean;
 function RemoveStrings(sTxt:String):String;
+function RemoveCaracterEspecial(sTxt:String):String;
 function FinalizaProcessoExe(ExeFileName: string): Integer;
 function VerficaExe(Nome:String):Boolean;
 
@@ -417,6 +422,20 @@ begin
       Result := Result + sTxt[iLoop];
   end;
   Result := StringReplace(sTexto,Result,'',[rfReplaceAll]);
+end;
+
+function RemoveCaracterEspecial(sTxt:String):String;
+begin
+  sTxt := StringReplace(sTxt,'.','',[rfReplaceAll]);
+  sTxt := StringReplace(sTxt,'-','',[rfReplaceAll]);
+  sTxt := StringReplace(sTxt,',','',[rfReplaceAll]);
+  sTxt := StringReplace(sTxt,'/','',[rfReplaceAll]);
+  sTxt := StringReplace(sTxt,'\','',[rfReplaceAll]);
+  sTxt := StringReplace(sTxt,'|','',[rfReplaceAll]);
+  sTxt := StringReplace(sTxt,'?','',[rfReplaceAll]);
+  sTxt := StringReplace(sTxt,'!','',[rfReplaceAll]);
+
+  Result := sTxt;
 end;
 
 function FinalizaProcessoExe(ExeFileName: string): Integer;

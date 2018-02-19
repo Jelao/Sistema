@@ -12,12 +12,14 @@ type
     private
       class function  PreparaPesq(Pesquisa:TPesquisaCadastro):string;
     public
-     class procedure openTable(tbTipoCadastro:TFDTable;
-                             tblSubTipoCadastro:TFDTable;
-                             tblpais:TFDTable;
-                             tbltransportadora:TFDTable;
-                             tblvendedor:TFDTable;
-                             tblrepresentante:TFDTable);
+     class procedure openTable(tblEndereco:TFDTable;
+                               tbTipoCadastro:TFDTable;
+                               tblSubTipoCadastro:TFDTable;
+                               tblpais:TFDTable;
+                               tbltransportadora:TFDTable;
+                               tblvendedor:TFDTable;
+                               tblrepresentante:TFDTable);
+
      class procedure SqlOpen(QryCadastro:TFDQuery;
                              Pesquisa:TPesquisaCadastro);
   end;
@@ -26,14 +28,18 @@ implementation
 
 { TPesquisaCadastro }
 
-class procedure TPesquisaCadastro.openTable(tbTipoCadastro, tblSubTipoCadastro, tblpais, tbltransportadora, tblvendedor, tblrepresentante: TFDTable);
+class procedure TPesquisaCadastro.openTable(tblEndereco,tbTipoCadastro, tblSubTipoCadastro, tblpais, tbltransportadora, tblvendedor, tblrepresentante: TFDTable);
 begin
+  tblEndereco.Connection         := DM_CADASTRO.CONN;
   tbTipoCadastro.Connection      := DM_CADASTRO.CONN;
   tblSubTipoCadastro.Connection  := DM_CADASTRO.CONN;
   tblpais.Connection             := DM_CADASTRO.CONN;
   tbltransportadora.Connection   := DM_CADASTRO.CONN;
   tblvendedor.Connection         := DM_CADASTRO.CONN;
   tblrepresentante.Connection    := DM_CADASTRO.CONN;
+
+  tblEndereco.Close;
+  tblEndereco.Open;
 
   tbTipoCadastro.Close;
   tbTipoCadastro.Open;

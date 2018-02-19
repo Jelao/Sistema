@@ -1,0 +1,184 @@
+unit Classe.ConsultaCNPJ;
+
+interface
+
+uses
+  System.Classes,
+  Vcl.Dialogs,
+  System.SysUtils;
+
+type
+  TCNPJ = class
+    private
+    FFantasia: String;
+    FEmail: String;
+    FBairro: String;
+    FUF: String;
+    FCEP: String;
+    FNumero: String;
+    FDataAbertura: TDate;
+    FTipoEmpresa: String;
+    FRazaoSocial: String;
+    FSituacao: String;
+    FComplemento: String;
+    FCidade: String;
+    FCNAE1: String;
+    FEndereco: String;
+    FTelefone: String;
+    FCNAE2: TStrings;
+    FCODIGO_IBGE: String;
+    procedure SetBairro(const Value: String);
+    procedure SetCEP(const Value: String);
+    procedure SetCidade(const Value: String);
+    procedure SetCNAE1(const Value: String);
+    procedure SetComplemento(const Value: String);
+    procedure SetDataAbertura(const Value: TDate);
+    procedure SetEndereco(const Value: String);
+    procedure SetFantasia(const Value: String);
+    procedure SetNumero(const Value: String);
+    procedure SetRazaoSocial(const Value: String);
+    procedure SetEmail(const Value: String);
+    procedure SetSituacao(const Value: String);
+    procedure SetTelefone(const Value: String);
+    procedure SetTipoEmpresa(const Value: String);
+    procedure SetUF(const Value: String);
+    procedure SetCNAE2(const Value: TStrings);
+    procedure SetCODIGO_IBGE(const Value: String);
+    public
+      property sTipoEmpresa   : String read FTipoEmpresa write SetTipoEmpresa;
+      property sRazaoSocial   : String read FRazaoSocial write SetRazaoSocial;
+      property sFantasia      : String read FFantasia write SetFantasia;
+      property dDataAbertura  : TDate read FDataAbertura write SetDataAbertura;
+      property sEndereco      : String read FEndereco write SetEndereco;
+      property sNumero        : String read FNumero write SetNumero;
+      property sComplemento   : String read FComplemento write SetComplemento;
+      property sBairro        : String read FBairro write SetBairro;
+      property sCidade        : String read FCidade write SetCidade;
+      property sUF            : String read FUF write SetUF;
+      property sCODIGO_IBGE   : String read FCODIGO_IBGE write SetCODIGO_IBGE;
+      property sCEP           : String read FCEP write SetCEP;
+      property sSituacao      : String read FSituacao write SetSituacao;
+      property sCNAE1         : String read FCNAE1 write SetCNAE1;
+      property sEmail          : String read FEmail write SetEmail;
+      property sTelefone      : String read FTelefone write SetTelefone;
+      property sCNAE2         : TStrings read FCNAE2 write SetCNAE2;
+
+    class procedure GetCnpj(sCnpj:String; const CNPJ:TCNPJ);
+  end;
+
+implementation
+
+uses
+  uConsultaCNPJ;
+
+{ TCNPJ }
+
+class procedure TCNPJ.GetCnpj(sCnpj:String; const CNPJ:TCNPJ);
+  function CriaMaskCNPJ(sCnpj:String):String;
+  begin
+    sCnpj  := StringReplace(sCnpj,'.','',[rfReplaceAll]);
+    sCnpj  := StringReplace(sCnpj,'-','',[rfReplaceAll]);
+    sCnpj  := StringReplace(sCnpj,',','',[rfReplaceAll]);
+    sCnpj  := StringReplace(sCnpj,'/','',[rfReplaceAll]);
+    sCnpj  := StringReplace(sCnpj,'\','',[rfReplaceAll]);
+
+    Result := Copy(sCnpj,1,2)  + '.' +
+              Copy(sCnpj,3,3)  + '.' +
+              Copy(sCnpj,6,3)  + '/' +
+              Copy(sCnpj,9,4) + '-' +
+              Copy(sCnpj,13,2);
+  end;
+begin
+  frmConsultaCNPJ := TfrmConsultaCNPJ.Create(nil);
+  frmConsultaCNPJ.EditCNPJ.Text := CriaMaskCNPJ(sCnpj);
+  frmConsultaCNPJ.ShowModal;
+  frmConsultaCNPJ.free;
+
+end;
+
+procedure TCNPJ.SetBairro(const Value: String);
+begin
+  FBairro := Value;
+end;
+
+procedure TCNPJ.SetCEP(const Value: String);
+begin
+  FCEP := Value;
+end;
+
+procedure TCNPJ.SetCidade(const Value: String);
+begin
+  FCidade := Value;
+end;
+
+procedure TCNPJ.SetCNAE1(const Value: String);
+begin
+  FCNAE1 := Value;
+end;
+
+procedure TCNPJ.SetCNAE2(const Value: TStrings);
+begin
+  FCNAE2 := Value;
+end;
+
+procedure TCNPJ.SetCODIGO_IBGE(const Value: String);
+begin
+  FCODIGO_IBGE := Value;
+end;
+
+procedure TCNPJ.SetComplemento(const Value: String);
+begin
+  FComplemento := Value;
+end;
+
+procedure TCNPJ.SetDataAbertura(const Value: TDate);
+begin
+  FDataAbertura := Value;
+end;
+
+procedure TCNPJ.SetEndereco(const Value: String);
+begin
+  FEndereco := Value;
+end;
+
+procedure TCNPJ.SetFantasia(const Value: String);
+begin
+  FFantasia := Value;
+end;
+
+procedure TCNPJ.SetNumero(const Value: String);
+begin
+  FNumero := Value;
+end;
+
+procedure TCNPJ.SetRazaoSocial(const Value: String);
+begin
+  FRazaoSocial := Value;
+end;
+
+procedure TCNPJ.SetEmail(const Value: String);
+begin
+  FEmail := Value;
+end;
+
+procedure TCNPJ.SetSituacao(const Value: String);
+begin
+  FSituacao := Value;
+end;
+
+procedure TCNPJ.SetTelefone(const Value: String);
+begin
+  FTelefone := Value;
+end;
+
+procedure TCNPJ.SetTipoEmpresa(const Value: String);
+begin
+  FTipoEmpresa := Value;
+end;
+
+procedure TCNPJ.SetUF(const Value: String);
+begin
+  FUF := Value;
+end;
+
+end.

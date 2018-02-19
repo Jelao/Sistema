@@ -65,13 +65,13 @@ type
     DBEdit2: TDBEdit;
     Label4: TLabel;
     Label5: TLabel;
-    DBEdit4: TDBEdit;
+    ediCNPJConsult: TDBEdit;
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
-    DBEdit7: TDBEdit;
+    ediRazaoConsult: TDBEdit;
     Label9: TLabel;
-    DBEdit8: TDBEdit;
+    ediFantasiaConsult: TDBEdit;
     Label11: TLabel;
     Label12: TLabel;
     DBEdit11: TDBEdit;
@@ -86,7 +86,7 @@ type
     Label17: TLabel;
     DBEdit16: TDBEdit;
     Label18: TLabel;
-    DBEdit17: TDBEdit;
+    ediEmailConsult: TDBEdit;
     Label19: TLabel;
     DBEdit18: TDBEdit;
     Label20: TLabel;
@@ -160,24 +160,24 @@ type
     DBLookupComboBox1: TDBLookupComboBox;
     QryCadastro: TFDQuery;
     DBLookupComboBox2: TDBLookupComboBox;
-    DBLookupComboBox3: TDBLookupComboBox;
+    cbxPais: TDBLookupComboBox;
     Label66: TLabel;
-    DBEdit5: TDBEdit;
-    DBEdit6: TDBEdit;
+    ediEnderecoConsult: TDBEdit;
+    ediNumeroConsult: TDBEdit;
     Label67: TLabel;
-    DBEdit10: TDBEdit;
+    ediComplementoConsult: TDBEdit;
     Label68: TLabel;
-    DBEdit57: TDBEdit;
+    ediCEPConsult: TDBEdit;
     Label69: TLabel;
-    DBEdit58: TDBEdit;
+    ediBairroConsult: TDBEdit;
     Label70: TLabel;
-    DBEdit59: TDBEdit;
+    ediCidadeConsult: TDBEdit;
     Label71: TLabel;
-    DBEdit60: TDBEdit;
+    ediCodigoMunicipioConsult: TDBEdit;
     Label72: TLabel;
-    DBEdit61: TDBEdit;
+    ediMunicipioConsult: TDBEdit;
     Label73: TLabel;
-    DBEdit62: TDBEdit;
+    ediUFConsult: TDBEdit;
     Label74: TLabel;
     DBLookupComboBox4: TDBLookupComboBox;
     DBLookupComboBox5: TDBLookupComboBox;
@@ -205,6 +205,11 @@ type
     ediDataCadastro: TDateTimePicker;
     ediDataNascimento: TDateTimePicker;
     ediDataEmpresa: TDateTimePicker;
+    btnBuscar: TBitBtn;
+    tblEndereco: TFDTable;
+    dtsEndereco: TDataSource;
+    btnSintegra: TBitBtn;
+    btnCep: TBitBtn;
     procedure FormShow(Sender: TObject);
     procedure ediIdCadastroChange(Sender: TObject);
     procedure DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
@@ -213,6 +218,10 @@ type
     procedure ediDataCadastroChange(Sender: TObject);
     procedure ediDataNascimentoChange(Sender: TObject);
     procedure ediDataEmpresaChange(Sender: TObject);
+    procedure btnBuscarClick(Sender: TObject);
+    procedure DBComboBox1Change(Sender: TObject);
+    procedure btnSintegraClick(Sender: TObject);
+    procedure btnCepClick(Sender: TObject);
   private
   public
     Pesquisa : TPesquisaCadastro;
@@ -224,6 +233,9 @@ var
   frmCadastro_Cliente: TfrmCadastro_Cliente;
 
 implementation
+
+uses
+  Classe.ConsultaCNPJ, Classe.ConsultaCEP;
 
 {$R *.dfm}
 
@@ -287,6 +299,93 @@ begin
 end;
 
 
+procedure TfrmCadastro_Cliente.btnBuscarClick(Sender: TObject);
+var
+  sRAZAO,
+  sFANTASIA,
+  sENDERECO,
+  sNUMERO,
+  sCOMPLEMENTO,
+  sBAIRRO,
+  sCIDADE,
+  sUF,
+  sCODIGO_MUNICIPIO,
+  sCEP,
+  sEMAIL : String;
+begin
+  if (ediCNPJConsult.Text <> '') and (Length(ediCNPJConsult.Text) = 14) then
+  begin
+    if not(Assigned(CNPJ)) then
+      CNPJ := TCNPJ.Create;
+
+    CNPJ.GetCnpj(ediCNPJConsult.Text,CNPJ);
+    if CNPJ.sRazaoSocial <> '' then
+    begin
+      sRAZAO                     := Trim(CNPJ.sRazaoSocial);
+      sFANTASIA                  := Trim(CNPJ.sFantasia);
+      sENDERECO                  := Trim(CNPJ.sEndereco);
+      sNUMERO                    := Trim(CNPJ.sNumero);
+      sCOMPLEMENTO               := Trim(CNPJ.sComplemento);
+      sBAIRRO                    := Trim(CNPJ.sBairro);
+      sCIDADE                    := Trim(CNPJ.sCidade);
+      sUF                        := Trim(CNPJ.sUF);
+      sCODIGO_MUNICIPIO          := Trim(CNPJ.sCODIGO_IBGE);
+      sCEP                       := Trim(CNPJ.sCEP);
+      sEMAIL                     := Trim(CNPJ.sEmail);
+      ediDataEmpresa.DateTime    := CNPJ.dDataAbertura;
+      ediDataNascimento.DateTime := CNPJ.dDataAbertura;
+
+      QryCadastro.FieldByName('RAZAO').Value                := sRAZAO;
+      QryCadastro.FieldByName('FANTASIA').Value             := sFANTASIA;
+      QryCadastro.FieldByName('EMAIL').Value                := sEMAIL;
+      QryCadastro.FieldByName('DATA_EMPRESA').AsDateTime    := CNPJ.dDataAbertura;
+      QryCadastro.FieldByName('DATA_NASCIMENTO').AsDateTime := CNPJ.dDataAbertura;
+
+
+      tblEndereco.Edit;
+      tblEndereco.FieldByName('sEndereco').Value         := sENDERECO;
+      tblEndereco.FieldByName('sNumero').Value           := sNUMERO;
+      tblEndereco.FieldByName('sComplemento').Value      := sCOMPLEMENTO;
+      tblEndereco.FieldByName('sBairro').Value           := sBAIRRO;
+      tblEndereco.FieldByName('scidade').Value           := sCIDADE;
+      tblEndereco.FieldByName('sUF').Value               := sUF;
+      if sCODIGO_MUNICIPIO <> '' then
+        tblEndereco.FieldByName('idMunicipio').Value     := sCODIGO_MUNICIPIO;
+      tblEndereco.FieldByName('sCep').Value              := RemoveCaracterEspecial(sCEP);
+      tblEndereco.Post;
+    end;
+  end
+  else
+  begin
+    MessageDlg('CNPJ Invalido por favor verifique!',mtInformation,[mbOK],0);
+    ediCNPJConsult.SetFocus;
+    Exit;
+  end;
+end;
+
+procedure TfrmCadastro_Cliente.btnCepClick(Sender: TObject);
+begin
+  if not(Assigned(ConsultaCep)) then
+    ConsultaCep := TConsultaCep.Create;
+
+  ConsultaCep.GetCep(ediCEPConsult.Text,ConsultaCep);
+  tblEndereco.Edit;
+  tblEndereco.FieldByName('sEndereco').Value         := ConsultaCep.sEndereco;
+  tblEndereco.FieldByName('sComplemento').Value      := ConsultaCep.sCOMPLEMENTO;
+  tblEndereco.FieldByName('sBairro').Value           := ConsultaCep.sBAIRRO;
+  tblEndereco.FieldByName('scidade').Value           := ConsultaCep.sMunicipio;
+  tblEndereco.FieldByName('sUF').Value               := ConsultaCep.sUF;
+  if ConsultaCep.sIBGE_Municipio <> '' then
+    tblEndereco.FieldByName('idMunicipio').Value       := ConsultaCep.sIBGE_Municipio;
+  tblEndereco.FieldByName('sCep').Value              := RemoveCaracterEspecial(ConsultaCep.sCEP);
+  tblEndereco.Post;
+end;
+
+procedure TfrmCadastro_Cliente.btnSintegraClick(Sender: TObject);
+begin
+  ShellExecute(Handle,'open','http://www.sintegra.gov.br/','','',SW_SHOWMAXIMIZED);
+end;
+
 procedure TfrmCadastro_Cliente.ediDataCadastroChange(Sender: TObject);
 begin
   QryCadastro.FieldByName('DATA_CADASTRO').AsDateTime := ediDataCadastro.DateTime;
@@ -302,12 +401,38 @@ begin
   QryCadastro.FieldByName('DATA_NASCIMENTO').AsDateTime := ediDataNascimento.DateTime;
 end;
 
+procedure TfrmCadastro_Cliente.DBComboBox1Change(Sender: TObject);
+begin
+  if DBComboBox1.Text = 'JURIDICA' then
+  begin
+    btnBuscar.Enabled := True;
+    tblpais.Locate('sDescricao','BRASIL',[loPartialKey]);
+    cbxPais.KeyValue := tblpais.FieldByName('idPais').Value;
+  end
+  else if DBComboBox1.Text = 'FISICA' then
+  begin
+    tblpais.Locate('sDescricao','BRASIL',[loPartialKey]);
+    cbxPais.KeyValue := tblpais.FieldByName('idPais').Value;
+  end
+  else
+  begin
+    tblpais.Locate('sDescricao','PARAGUAI',[loPartialKey]);
+    cbxPais.KeyValue := tblpais.FieldByName('idPais').Value;
+    btnBuscar.Enabled := False;
+  end;
+end;
+
 procedure TfrmCadastro_Cliente.DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
 begin
   Panel5.Enabled :=  false;
   ediDataCadastro.DateTime   := QryCadastro.FieldByName('DATA_CADASTRO').AsDateTime;
   ediDataNascimento.DateTime := QryCadastro.FieldByName('DATA_NASCIMENTO').AsDateTime;
   ediDataEmpresa.DateTime    := QryCadastro.FieldByName('DATA_EMPRESA').AsDateTime;
+
+  if DBComboBox1.Text = 'JURIDICA' then
+    btnBuscar.Enabled := True
+  else
+    btnBuscar.Enabled := False;
 
   case Button of
     nbFirst: ;
@@ -353,12 +478,13 @@ begin
   if not(Assigned(Pesquisa)) then
     Pesquisa := TPesquisaCadastro.Create;
 
-  Pesquisa.openTable(tbTipoCadastro,
-                   tblSubTipoCadastro,
-                   tblpais,
-                   tbltransportadora,
-                   tblvendedor,
-                   tblrepresentante);
+  Pesquisa.openTable(tblEndereco,
+                     tbTipoCadastro,
+                     tblSubTipoCadastro,
+                     tblpais,
+                     tbltransportadora,
+                     tblvendedor,
+                     tblrepresentante);
 
   PesquisaCad;
 end;

@@ -12,7 +12,10 @@ uses
   Classe.PesquisaCadastro in 'Controller\Classe.PesquisaCadastro.pas',
   uClasse.Cadastros in 'Controller\uClasse.Cadastros.pas',
   Vcl.Themes,
-  Vcl.Styles;
+  Vcl.Styles,
+  Classe.ConsultaCNPJ in 'Controller\Classe.ConsultaCNPJ.pas',
+  uConsultaCNPJ in 'Viewers\uConsultaCNPJ.pas' {frmConsultaCNPJ},
+  Classe.ConsultaCEP in 'Controller\Classe.ConsultaCEP.pas';
 
 {$R *.res}
 
@@ -21,5 +24,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM_CADASTRO, DM_CADASTRO);
   Application.CreateForm(TfrmCadastro_Cliente, frmCadastro_Cliente);
+  Application.CreateForm(TfrmConsultaCNPJ, frmConsultaCNPJ);
   Application.Run;
 end.

@@ -2,11 +2,14 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
   Caption = 'CADASTROS'
   ClientHeight = 671
   OnShow = FormShow
+  ExplicitLeft = -301
+  ExplicitWidth = 1386
   ExplicitHeight = 710
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl1: TPageControl
     Height = 671
+    ActivePage = TabSheet2
     ExplicitHeight = 671
     inherited TabSheet1: TTabSheet
       ExplicitHeight = 640
@@ -277,6 +280,9 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
       end
     end
     inherited TabSheet2: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 27
+      ExplicitWidth = 1362
       ExplicitHeight = 640
       inherited Panel4: TPanel
         inherited DBNavigator1: TDBNavigator
@@ -288,8 +294,6 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
       inherited Panel5: TPanel
         Height = 575
         Enabled = False
-        ExplicitLeft = 296
-        ExplicitTop = 121
         ExplicitHeight = 575
         object Label3: TLabel
           Left = 16
@@ -312,7 +316,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 117
           Height = 13
           Caption = 'CNPJ/CPF/PASSAPORTE'
-          FocusControl = DBEdit4
+          FocusControl = ediCNPJConsult
         end
         object Label6: TLabel
           Left = 982
@@ -334,7 +338,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 68
           Height = 13
           Caption = 'RAZAO/NOME'
-          FocusControl = DBEdit7
+          FocusControl = ediRazaoConsult
         end
         object Label9: TLabel
           Left = 16
@@ -342,11 +346,11 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 97
           Height = 13
           Caption = 'FANTASIA/APELIDO'
-          FocusControl = DBEdit8
+          FocusControl = ediFantasiaConsult
         end
         object Label11: TLabel
-          Left = 716
-          Top = 8
+          Left = 745
+          Top = 6
           Width = 23
           Height = 13
           Caption = 'PAIS'
@@ -405,7 +409,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 34
           Height = 13
           Caption = 'E-MAIL'
-          FocusControl = DBEdit17
+          FocusControl = ediEmailConsult
         end
         object Label19: TLabel
           Left = 16
@@ -516,7 +520,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           FocusControl = DBEdit31
         end
         object Label33: TLabel
-          Left = 716
+          Left = 745
           Top = 50
           Width = 77
           Height = 13
@@ -524,7 +528,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           FocusControl = DBEdit32
         end
         object Label34: TLabel
-          Left = 843
+          Left = 864
           Top = 50
           Width = 83
           Height = 13
@@ -562,7 +566,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           FocusControl = DBEdit37
         end
         object Label41: TLabel
-          Left = 591
+          Left = 621
           Top = 8
           Width = 115
           Height = 13
@@ -716,7 +720,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 54
           Height = 13
           Caption = 'ENDERE'#199'O'
-          FocusControl = DBEdit5
+          FocusControl = ediEnderecoConsult
         end
         object Label67: TLabel
           Left = 549
@@ -724,15 +728,15 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 43
           Height = 13
           Caption = 'NUMERO'
-          FocusControl = DBEdit6
+          FocusControl = ediNumeroConsult
         end
         object Label68: TLabel
-          Left = 716
+          Left = 745
           Top = 133
           Width = 75
           Height = 13
           Caption = 'COMPLEMENTO'
-          FocusControl = DBEdit10
+          FocusControl = ediComplementoConsult
         end
         object Label69: TLabel
           Left = 591
@@ -740,7 +744,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 19
           Height = 13
           Caption = 'CEP'
-          FocusControl = DBEdit57
+          FocusControl = ediCEPConsult
         end
         object Label70: TLabel
           Left = 549
@@ -748,15 +752,15 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 39
           Height = 13
           Caption = 'BAIRRO'
-          FocusControl = DBEdit58
+          FocusControl = ediBairroConsult
         end
         object Label71: TLabel
-          Left = 716
+          Left = 745
           Top = 91
           Width = 38
           Height = 13
           Caption = 'CIDADE'
-          FocusControl = DBEdit59
+          FocusControl = ediCidadeConsult
         end
         object Label72: TLabel
           Left = 982
@@ -764,7 +768,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 99
           Height = 13
           Caption = 'CODIGO MUNICIPIO'
-          FocusControl = DBEdit60
+          FocusControl = ediCodigoMunicipioConsult
         end
         object Label73: TLabel
           Left = 982
@@ -772,7 +776,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 55
           Height = 13
           Caption = 'MUNICIPIO'
-          FocusControl = DBEdit61
+          FocusControl = ediMunicipioConsult
         end
         object Label74: TLabel
           Left = 549
@@ -780,7 +784,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           Width = 13
           Height = 13
           Caption = 'UF'
-          FocusControl = DBEdit62
+          FocusControl = ediUFConsult
         end
         object DBEdit2: TDBEdit
           Left = 16
@@ -792,17 +796,17 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           DataSource = dtsCadastro
           TabOrder = 0
         end
-        object DBEdit4: TDBEdit
+        object ediCNPJConsult: TDBEdit
           Left = 279
           Top = 24
-          Width = 184
+          Width = 144
           Height = 21
           CharCase = ecUpperCase
           DataField = 'CNPJ_CPF_PASSAPORTE'
           DataSource = dtsCadastro
           TabOrder = 2
         end
-        object DBEdit7: TDBEdit
+        object ediRazaoConsult: TDBEdit
           Left = 16
           Top = 66
           Width = 447
@@ -812,7 +816,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           DataSource = dtsCadastro
           TabOrder = 8
         end
-        object DBEdit8: TDBEdit
+        object ediFantasiaConsult: TDBEdit
           Left = 16
           Top = 107
           Width = 525
@@ -882,7 +886,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           DataSource = dtsCadastro
           TabOrder = 31
         end
-        object DBEdit17: TDBEdit
+        object ediEmailConsult: TDBEdit
           Left = 193
           Top = 279
           Width = 328
@@ -993,9 +997,9 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           TabOrder = 42
         end
         object DBEdit32: TDBEdit
-          Left = 716
+          Left = 745
           Top = 66
-          Width = 118
+          Width = 104
           Height = 21
           CharCase = ecUpperCase
           DataField = 'NATURALIDADE'
@@ -1003,9 +1007,9 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           TabOrder = 11
         end
         object DBEdit33: TDBEdit
-          Left = 843
+          Left = 864
           Top = 66
-          Width = 125
+          Width = 104
           Height = 21
           CharCase = ecUpperCase
           DataField = 'NACIONALIDADE'
@@ -1033,7 +1037,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           TabOrder = 3
         end
         object DBEdit38: TDBEdit
-          Left = 591
+          Left = 621
           Top = 24
           Width = 115
           Height = 21
@@ -1226,10 +1230,10 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           ListSource = dtsSubTipoCadastro
           TabOrder = 7
         end
-        object DBLookupComboBox3: TDBLookupComboBox
-          Left = 716
+        object cbxPais: TDBLookupComboBox
+          Left = 745
           Top = 24
-          Width = 252
+          Width = 223
           Height = 21
           DataField = 'idPais'
           DataSource = dtsCadastro
@@ -1238,94 +1242,94 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           ListSource = dtsPais
           TabOrder = 5
         end
-        object DBEdit5: TDBEdit
-          Left = 16
-          Top = 149
+        object ediEnderecoConsult: TDBEdit
+          Left = 18
+          Top = 150
           Width = 525
           Height = 21
           CharCase = ecUpperCase
-          DataField = 'ENDERECO'
-          DataSource = dtsCadastro
+          DataField = 'sEndereco'
+          DataSource = dtsEndereco
           TabOrder = 20
         end
-        object DBEdit6: TDBEdit
+        object ediNumeroConsult: TDBEdit
           Left = 549
           Top = 149
           Width = 157
           Height = 21
           CharCase = ecUpperCase
-          DataField = 'NUMERO'
-          DataSource = dtsCadastro
+          DataField = 'sNumero'
+          DataSource = dtsEndereco
           TabOrder = 21
         end
-        object DBEdit10: TDBEdit
-          Left = 716
+        object ediComplementoConsult: TDBEdit
+          Left = 745
           Top = 149
-          Width = 252
+          Width = 223
           Height = 21
           CharCase = ecUpperCase
-          DataField = 'COMPLEMENTO'
-          DataSource = dtsCadastro
+          DataField = 'sComplemento'
+          DataSource = dtsEndereco
           TabOrder = 22
         end
-        object DBEdit57: TDBEdit
+        object ediCEPConsult: TDBEdit
           Left = 591
           Top = 107
           Width = 115
           Height = 21
           CharCase = ecUpperCase
-          DataField = 'CEP'
-          DataSource = dtsCadastro
+          DataField = 'sCep'
+          DataSource = dtsEndereco
           TabOrder = 16
         end
-        object DBEdit58: TDBEdit
+        object ediBairroConsult: TDBEdit
           Left = 549
           Top = 193
           Width = 419
           Height = 21
           CharCase = ecUpperCase
-          DataField = 'BAIRRO'
-          DataSource = dtsCadastro
+          DataField = 'sBairro'
+          DataSource = dtsEndereco
           TabOrder = 27
         end
-        object DBEdit59: TDBEdit
-          Left = 716
+        object ediCidadeConsult: TDBEdit
+          Left = 745
           Top = 107
-          Width = 252
+          Width = 223
           Height = 21
           CharCase = ecUpperCase
-          DataField = 'CIDADE'
-          DataSource = dtsCadastro
+          DataField = 'scidade'
+          DataSource = dtsEndereco
           TabOrder = 17
         end
-        object DBEdit60: TDBEdit
+        object ediCodigoMunicipioConsult: TDBEdit
           Left = 982
           Top = 149
           Width = 178
           Height = 21
           CharCase = ecUpperCase
-          DataField = 'CODIGO_MUNICIPIO'
-          DataSource = dtsCadastro
+          DataField = 'idMunicipio'
+          DataSource = dtsEndereco
           TabOrder = 23
         end
-        object DBEdit61: TDBEdit
+        object ediMunicipioConsult: TDBEdit
           Left = 982
           Top = 107
           Width = 178
           Height = 21
           CharCase = ecUpperCase
-          DataField = 'MUNICIPIO'
-          DataSource = dtsCadastro
+          DataField = 'sMunicipio'
+          DataSource = dtsEndereco
           TabOrder = 18
         end
-        object DBEdit62: TDBEdit
+        object ediUFConsult: TDBEdit
           Left = 549
           Top = 107
           Width = 31
           Height = 21
           CharCase = ecUpperCase
-          DataField = 'UF'
-          DataSource = dtsCadastro
+          DataField = 'sUF'
+          DataSource = dtsEndereco
           TabOrder = 15
         end
         object DBLookupComboBox4: TDBLookupComboBox
@@ -1376,6 +1380,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
             'FISICA'
             'JURIDICA')
           TabOrder = 1
+          OnChange = DBComboBox1Change
         end
         object DBComboBox2: TDBComboBox
           Left = 591
@@ -1739,95 +1744,350 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           TabOrder = 65
           OnChange = ediDataEmpresaChange
         end
+        object btnBuscar: TBitBtn
+          Left = 427
+          Top = 22
+          Width = 34
+          Height = 26
+          Enabled = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Glyph.Data = {
+            E6040000424DE604000000000000360000002800000014000000140000000100
+            180000000000B0040000120B0000120B00000000000000000000FFFFFFFDFDFD
+            C1C1C1A7A7A7F9F9F9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD6D4D6C8C6C89F
+            9F9FAEAEAEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEDEBECD4CBCEC9C7C89595
+            95CCCCCCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7E8D4CCCFBAB9B98D8D8D
+            EDEDEDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFDCDDD3CBCEAEAEAE949494FF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD6D0D2CDC7C99A9A9AB4B4B4FFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD2CCCEC6C0C2868686E3E3E3FFFFFF
+            FBFBFBEDEDEDECECECF9F9F9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFEFEFED7CFD1B6B3B3808081A2A2A2949496A3
+            A3A49E9EA089898AABABABF3F3F3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB9B8B9B7B7B9E4E3E4FCFCFDFFFFFFFFFF
+            FFFAFAFAD2D2D2838384E4E4E4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFF1F1F1ADADAFF3F3F3F9F9F9F8F8F8FAFAFAFAFAFAFAFAFA
+            FBFBFBECECEC878788F6F6F6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFAFAFB1ECEBEBF3F3F3F4F4F4F6F6F6F6F6F6F7F7F7F6F6F6F6F6F6F8
+            F8F8D8D8D9AAAAAAFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8F8F8
+            BAB9BBF0F0F0EFEFEFF4F4F4F4F4F4F4F4F4F5F5F5F4F4F4F5F5F5F4F4F4F6F6
+            F6929293DFDFDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAEAEBC8C7C8ED
+            EDEDEFEFEFF3F3F3F2F2F2F2F2F2F3F3F3F3F3F3F3F3F3F4F4F4F7F7F7B1B1B2
+            C0C0C1FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE9E9E9BFBEBEEAEAEAEDED
+            EDF0F0F0F1F1F1F1F1F1F2F2F2F2F2F2F2F2F2F2F2F2F4F4F4B5B5B7C2C2C3FF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF2F2F3ADACACE4E5E4E7E7E7E8E8E8
+            E8E8E8E8E8E8EAEAEAEAEAEAECECECEEEEEEF2F2F2AFAFB0DBDBDCFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB1B0B0CACACAF1F1F1EEEEEEEDEDEDEB
+            EBEBECECECEEEEEEEFEFEFF2F2F2EBEAEBB1B1B2FFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFE7E7E7969695DFDFDFF2F3F3EEEEEEEDEDEDEFEF
+            EFEFEFEFF2F2F2F0F0F0B2B2B4F3F3F3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFD6D6D69C9B9BCFCFCFE8E8E8EEEEEEF0F0F0ECECEC
+            DDDDDDB3B3B4D6D6D6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFE9E9E9B0B0AFA4A3A3ACACABB0B0AFB0AFAFAEAEAFE5
+            E5E6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFAFAFAE6E6E6D9D8D8DADADAE4E3E4FCFCFCFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFF}
+          ParentFont = False
+          TabOrder = 66
+          OnClick = btnBuscarClick
+        end
+        object btnSintegra: TBitBtn
+          Left = 582
+          Top = 19
+          Width = 36
+          Height = 31
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Glyph.Data = {
+            6A080000424D6A0800000000000036000000280000001B000000190000000100
+            18000000000034080000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFDBDCDCFAFAFAFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+            0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFF259CD1229AD4259CD11F9CD1
+            369CCA03182A373940FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFF
+            FFFF70B8D5229ECF1F9FD2239DD1269DD2269ED2249ED224A0CF2699D7184661
+            24262CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFF229CD4239DD1239ED223
+            9DD2269DD3219DD1279BD2289DD1209CD4229CD2289FCE151A19FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFF
+            FFFFFFFFFFFFFFFDFFFF229ED4239ED1239ECE23A0D6ADDDEDFDFCFEFDFDFDFD
+            FDFDFDFEFDF9FDFD9EDBED219FD00A1D26C9C9CAFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFF7FEFE239C
+            D4239DD11E9CCF7D8988F8FEFBFDFCFFFEFEFEFFFFFFFEFEFEFEFEFEFDFFFBF7
+            FEFD97D4E771BAD634383FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFF209ED3209ED226698CF8FCFDFEFE
+            FEFEFEFEFFFFFFFEFEFEFFFFFFFFFFFFFEFEFEFEFEFEFBFEFEF5FEF7A6D4E723
+            292BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFF
+            FBFEFF827D88269AD2249DD4081729FDFDFDFEFEFEFFFFFFFFFFFFFEFEFEFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFCFDFDFCFCFCCCE5F1DFE0E0FFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF4EA2CA3D84AB289ED0
+            092B44FEFCFBFBFEFDF6FDFAFEFAFC9C9FA3FDFDFCFEFEFEFFFFFFFEFEFEFFFF
+            FFFFFFFFFEFEFEEBFCFCFDFEFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+            0000FFFFFFFFFFFFFFFFFFFFFFFF2FA0C5279CD54397CB1E1D28081F323F9CC3
+            FEFEFDFEFEFEFEFEFEFFFFFFFEFEFEFEFEFEFEFEFEFFFFFFFDFDFD21546F6CB3
+            CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFF
+            FFFF349ECA249ED4259DD12A9BD8102F44F7FDFEFDFDFDFEFEFEFFFFFFFFFFFF
+            FFFFFFFFFFFFFEFEFEFFFFFFB2B3B72A9DD2269ECDFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1FA0D5229DD11F
+            5D7FFDFDFDFEFEFEFFFFFFFFFFFFFEFEFEFEFEFEFEFEFEFEFEFEFCFEFEFFFAF8
+            2CA2C91EA0CE249ED32A9CCCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFCFEFE1B9FCC2F3E37FFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFF6FEFAE4FDFC309BCE30637C153A53289DD025A2CC
+            C4E7F0FFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFF249DD0D0CDD4FEFEFEFEFEFEFDFDFDFEFEFEFFFFFFFEFEFEFCFEFE36
+            4849FDFAFEFBFCFCFDFCFE151A211F9FD1219FCC56A7C8FEFFFFFFFFFFFFFFFF
+            FFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFEF9F8FEFE
+            FEFEFEFEFEFEFEFFFFFFFEFEFEFEFEFEFFFFFFFFFFFFFEFEFEFEFEFEFDFDFD17
+            1A1E269DD1259DD2CCD0D0FFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFF8C8E93EDF7FCF8FEFBFEFDFFFFFFFFFFFFFFFFFF
+            FFFEFEFEFFFFFFFFFFFFFFFFFFFEFEFEFEFEFE171A1C269DD1289DD176BDD4FF
+            FFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFF8F90979FD5EBB0D7EDFDFCFCFEFEFEFFFEFFFFFFFFFFFFFFFFFFFFFEFE
+            FEFDFEFEFDFDFD10374F279CD0229ED2259FCDFFFFFFFFFFFFFFFFFFFFFFFF00
+            0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E8EA162022
+            239ED0D0F9FEFAFCFDFEFEFEFEFEFEFFFFFFFEFEFEFEFAFB3E7E9C2B9BD5249E
+            D2249ED22B9FCEFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1D1826359DCD2B9CD33D9DC9
+            85C5D88AC0D331A0CC209AD3299DD2259DD1239DD1239DD174B7D4FFFFFFFFFF
+            FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFF1C1E22326182249ED5219ED02B9CD2269ED2239DD2
+            239DD2249DD2229ED120A2CEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFF121D20083C55259FD2239CD1239ED2249ED1249CD1259ECFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEF
+            EFF11B1B1C1317220F1A28FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFF000000}
+          ParentFont = False
+          TabOrder = 67
+          OnClick = btnSintegraClick
+        end
+        object btnCep: TBitBtn
+          Left = 707
+          Top = 95
+          Width = 36
+          Height = 39
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Glyph.Data = {
+            8A0B0000424D8A0B0000000000003600000028000000210000001D0000000100
+            180000000000540B0000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFF393939E3E3E3EFEFEFFFFFFFFFFFFFFFFFFFFFFF
+            FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFF5F5F55B5B5B959595DADADA686868FFFFFFFFFFFFFF
+            FFFFFFFFFF00FFFFFFFFFFFFFFFFFFFBFEFFFFFFF8C7A685C7A685C7A685C7A6
+            85C7A685C7A685C7A685C7A685C7A685C7A685C7A685C5A685C3A483C3A687C4
+            A689BC9D7CBE9F7EC8A583C29D838078718D8D8D9D9D9DA5A5A5B7B7B7FFFFFF
+            FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFEFAFFFF87450A82420282420282420282
+            4202824202824202824202824202824202824202824202874500734700864300
+            8C4900823B00894B058247017C3300A2A2A2A5A5A59E9E9EB3B1B0E9E9E9F7F7
+            F7FFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFF6F9FFFFFDF67B4701824202824202
+            8242028242028242028242028242028242028242028242028242029B826EDBD4
+            D9E9D8DCE9E7E6D9DBDB917F806A472DB7B2B1ADADAD8F8F8F898989FFFFF6F7
+            F7F7FDFDFDFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFF7FFF9F18043018043
+            018043018043018043018043018043018043018043017E40007A3A00D0CAD5FA
+            FDFFECE4CD9D5630944F24BE9477D2D0CFDCD9D4C4C4C4848484656565814000
+            B89776FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFF9FFFCEF82
+            42028242028242028242028242028242028242028242028847038641028A8F92
+            E4E5E1905B3AAB6F39A36731A2682DA3692EA6602BD8DBD9EDEBEB8D8C8E8335
+            00824202C1A07FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFF9
+            FFFCEF824202824202824202824202824202824202824202824202FFFFE3A8A3
+            9AFBF9F8945C2BC59C7BA468329C602A995F249D6328A37C38A67132E8E0D9AC
+            B9BB845504824202C1A07FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFF
+            FFFFFFF9FFFCEF824202824202824202824202824202824202824202813D08A2
+            84558D8F8FE7E3E2F6D3B2AA7647A87A4A8A592194581C985E23A26932AB723B
+            A25C2DEBF2EF7F3900824202C2A180FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FF00FFFFFFFFFFF9FFFCEF804301804301804301804301804301804301804301
+            DADBD9723500DBE6E3995532D2AB8BCFB293CDB091C9AC8DC9A6858F5623A26B
+            32AC753CAD814BE2DEDD867469804301C2A180FFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFF00FFFFFFFFFFF9FFFCEF8242028242028242028242028242027E3A
+            00823300F7FBE8A77454E1E8E3A5501EE0C3A4D9C1A9D9C3AAD6C0A7D4B99FCB
+            B096AC6F37A9773DBE8950E3E3E38E8171824202C2A180FFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFF00FFFFFFFFFFF9FFFCEF82420282420282420282420282
+            4202863D007B54528D7B5EF5F1F6929996C89A82ECCFB0E4D0BEE5D4C1E2D1BE
+            E1C9B5DBC1A9E3B683B37948AC6B38FCF8F7654216824202C2A180FFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFF9FFFCEFFFFFF8FAFEFFFAFEFF
+            FAFEFFF6FFFF8D4509734018FAFFF5652600D8BDA8D7DCDBF3CA9DFFF3E7FEF4
+            EDFDF3ECEDE0D2F3E2CFC4B19CF0C49BD7B9A8E6E6EC874302824202C2A180FF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFF9FFFCEF863E08F9FE
+            FFFFFFFFFFFFFFFFFFFFFFFAEAFFFFF1845E2EBD9180EFBFA7FCF8E6C8B8A1ED
+            C19CECE7E4F3EEEBFCE6E0D6C3B4DCB696965235F8F3F5939A977C4600824202
+            C2A180FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFF9FFFCEF82
+            4202FFF4EEFFFFFFFFFFFFFFFFFFFCFBFD8F47076A2600FAFEEB7F6E47BFB9A2
+            EDFBFFC8D0DD9D5C1FE0C4A5DEC6A2B67E4DD5D5D5FFFFFC8F8F83FFF4F67628
+            0084500DC2A180FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFF9
+            FFFCEF8242027B3C00FFFFFFFFFFFFFFFFFFFFFFFCFFFBFA998665FFFFF06725
+            08FFFEFC87461A9B9082FFFBFFF0E7F1E6DFE6FCF8FEB2B8BF6B563BE4CEC2D5
+            B291C29788834800C2A180FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFF
+            FFFFFFF9FFFCEF804301894804745431FFFDFFFEFEFEFEFEFEFEFEFE643008BD
+            8661B17B64EFFAF2782F008E3E00FFFFFFFAFAFAFFFFFFFFFFFFFFFCF8FFF4E6
+            E1FFF2884A21E6EFE5A7815FC2A180FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FF00FFFFFFFFFFF9FFFCEF8242028242028440007E420C863803863803863803
+            732D007D3D07763900953E007C40006B3904D1C5B3FFFFFEFFFFFFFFFFFFFCF8
+            FD8B48038448067235007D4000753900C2A180FFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFF00FFFFFFFFFFF9FFFCEF8242028242028242028242028242028242
+            02824202824202824202824202824202824202904700FFFFFFFFFFFFFFFFFFEB
+            FDFCB07030854505824202824202824202824202C2A180FFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFF00FFFFFFFFFFF9FFFCEF82420282420282420282420282
+            4202824202824202824202824202824202824202824202F9FEFDFFFFFFFFFFFF
+            FFFFFFE9F6EE824202824202824202824202824202824202C2A180FFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFF9FFFCEF804301804301804301
+            804301804301804301804301804301804301804301804301A88A6DFEFEFEFFFF
+            FFFFFFFFFCFCFC702700804301804301804301804301804301804301C2A180FF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFF9FFFCEF8242028242
+            02824202824202824202824202824202824202824202814101834303F4FAFFF9
+            FBFFF4F8FFF4F8FFF2FEFF824202824202824202824202824202824202824202
+            C2A180FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFF9FFFCEF82
+            4202824202824202824202824202824202824202824202824202834303854505
+            81410A83450F8747118747118B42008242028242028242028242028242028242
+            02824202C2A180FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFF7
+            FFFBF38242028242028242028242028242028242028242028242028242028242
+            0282420282420282420282420282420282420282420282420282420282420282
+            4202824202824202C5A483FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFF
+            FFFFFFFCFFFFF884430080430180430180430180430180430180430180430180
+            4301804301804301804301804301804301804301804301804301804301804301
+            804301804301804301804301FFFFF0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FF00FFFFFFFFFFFFFFFFFF6D3A02814402884400884400884400884400884400
+            8844008844008844008844008844008844008844008844008844008844008844
+            008844008844008844008B4400683500FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFBFAFEFFFBF5F0FBF5F0FBF5F0FBF5
+            F0FBF5F0FBF5F0FBF5F0FBF5F0FBF5F0FBF5F0FBF5F0FBF5F0FBF5F0FBF5F0FB
+            F5F0FBF5F0FBF5F0FBF5F0FEF8EBF8FFFFFDF9F4FFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFF00}
+          ParentFont = False
+          TabOrder = 68
+          OnClick = btnCepClick
+        end
       end
     end
   end
   object dtsCadastro: TDataSource
     AutoEdit = False
     DataSet = QryCadastro
-    Left = 628
-    Top = 251
+    Left = 396
+    Top = 51
   end
   object QryCadastro: TFDQuery
-    Left = 628
-    Top = 204
+    Left = 396
+    Top = 4
   end
   object tbTipoCadastro: TFDTable
     UpdateOptions.UpdateTableName = 'tbtipocadastro'
     TableName = 'tbtipocadastro'
-    Left = 708
-    Top = 203
+    Left = 476
+    Top = 3
   end
   object dtsTipoCadastro: TDataSource
     DataSet = tbTipoCadastro
-    Left = 708
-    Top = 251
+    Left = 476
+    Top = 51
   end
   object tblSubTipoCadastro: TFDTable
     MasterSource = dtsTipoCadastro
     MasterFields = 'idTipoCadastro'
     UpdateOptions.UpdateTableName = 'tbsubtipocadastro'
     TableName = 'tbsubtipocadastro'
-    Left = 799
-    Top = 203
+    Left = 567
+    Top = 3
   end
   object tblpais: TFDTable
     UpdateOptions.UpdateTableName = 'tbpais'
     TableName = 'tbpais'
-    Left = 904
-    Top = 200
+    Left = 672
   end
   object tblvendedor: TFDTable
     UpdateOptions.UpdateTableName = 'tbvendedor'
     TableName = 'tbvendedor'
-    Left = 1064
-    Top = 200
+    Left = 832
   end
   object tbltransportadora: TFDTable
     UpdateOptions.UpdateTableName = 'tbtransportadora'
     TableName = 'tbtransportadora'
-    Left = 976
-    Top = 200
+    Left = 744
   end
   object dtsSubTipoCadastro: TDataSource
     DataSet = tblSubTipoCadastro
-    Left = 804
-    Top = 251
+    Left = 572
+    Top = 51
   end
   object dtsPais: TDataSource
     DataSet = tblpais
-    Left = 903
-    Top = 251
+    Left = 671
+    Top = 51
   end
   object dtsTransportadora: TDataSource
     DataSet = tbltransportadora
-    Left = 978
-    Top = 249
+    Left = 746
+    Top = 49
   end
   object dtsVendedor: TDataSource
     DataSet = tblvendedor
-    Left = 1068
-    Top = 251
+    Left = 836
+    Top = 51
   end
   object tblrepresentante: TFDTable
     UpdateOptions.UpdateTableName = 'tbrepresentante'
     TableName = 'tbrepresentante'
-    Left = 1144
-    Top = 200
+    Left = 912
   end
   object dtsRepresentante: TDataSource
     DataSet = tblrepresentante
-    Left = 1147
-    Top = 249
+    Left = 915
+    Top = 49
   end
   object ACBrEnterTab1: TACBrEnterTab
     EnterAsTab = True
-    Left = 524
-    Top = 243
+    Left = 236
+    Top = 3
   end
   object OpenPictureDialog: TOpenPictureDialog
     Filter = 'JPEG Images (*.jpg)|*.jpg|BitMap|*.bmp'
     Left = 1108
     Top = 388
+  end
+  object tblEndereco: TFDTable
+    MasterSource = dtsCadastro
+    MasterFields = 'idCadastro'
+    UpdateOptions.UpdateTableName = 'tbendereco'
+    TableName = 'tbendereco'
+    Left = 312
+  end
+  object dtsEndereco: TDataSource
+    DataSet = tblEndereco
+    Left = 316
+    Top = 51
   end
 end

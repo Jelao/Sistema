@@ -1,4 +1,4 @@
-Select idCadastro         as ID,
+Select idCadastro,
        sCodigoCadastro    as CODIGO,
        sTipoFje           as PESSOA,
        sCnpjCpfPassaporte as CNPJ_CPF_PASSAPORTE,

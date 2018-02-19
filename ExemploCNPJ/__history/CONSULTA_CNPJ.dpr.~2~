@@ -1,0 +1,15 @@
+program CONSULTA_CNPJ;
+
+uses
+  Vcl.Forms,
+  uPrinc in 'uPrinc.pas' {Form1},
+  Classe.ConsultaCNPJ in '..\SALAO\Fontes\Controller\Classe.ConsultaCNPJ.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

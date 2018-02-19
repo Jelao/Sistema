@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/03/06 14:41:18.000.369,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/03/06 14:44:50.000.944,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/03/21 08:10:01.000.435,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/04/06 17:08:09.000.149,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/09/06 08:39:34.000.691,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/09/06 10:52:38.000.079,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/09/11 11:40:39.000.186,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/09/11 11:40:40.000.868,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2017/09/11 11:40:43.000.952,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2017/09/28 13:25:26.000.117,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/09/28 13:30:24.000.546,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/09/28 14:36:43.000.896,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/09/28 15:07:43.000.015,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/11/21 17:59:42.000.316,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/12/30 09:32:55.000.947,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/01/16 11:50:05.000.289,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/01/17 10:36:52.000.786,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/02/01 14:34:53.000.316,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/02/19 08:47:22.000.774,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/02/19 09:24:28.000.203,=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/02/19 09:27:21.000.168,C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Projetos\Delphi berlin\SISTEMA\ExemploCNPJ\uPrinc.pas</Transaction>
+    <Transaction>2018/02/19 09:27:21.000.168,C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Projetos\Delphi berlin\SISTEMA\ExemploCNPJ\uPrinc.dfm</Transaction>
+    <Transaction>2018/02/19 09:27:28.000.965,C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Projetos\Delphi berlin\SISTEMA\ExemploCNPJ\CONSULTA_CNPJ.dproj</Transaction>
+    <Transaction>2018/02/19 09:27:45.000.499,=C:\Projetos\Delphi berlin\SISTEMA\SALAO\Fontes\Controller\Classe.ConsultaCNPJ.pas</Transaction>
+    <Transaction>2018/02/19 09:28:07.000.449,=C:\Projetos\Delphi berlin\SISTEMA\SALAO\Fontes\Viewers\uConsultaCNPJ.pas</Transaction>
+    <Transaction>2018/02/19 10:32:30.598,=C:\Projetos\Delphi berlin\SISTEMA\SALAO\Fontes\Controller\uFunction.pas</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5" Android="AVD_for_Nexus_7_by_Google"/>
+	</ActiveMobileDevice>
+</BorlandProject>

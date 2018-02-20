@@ -222,6 +222,7 @@ type
     procedure DBComboBox1Change(Sender: TObject);
     procedure btnSintegraClick(Sender: TObject);
     procedure btnCepClick(Sender: TObject);
+    procedure ediEnderecoConsultChange(Sender: TObject);
   private
   public
     Pesquisa : TPesquisaCadastro;
@@ -343,16 +344,18 @@ begin
 
 
       tblEndereco.Edit;
-      tblEndereco.FieldByName('sEndereco').Value         := sENDERECO;
-      tblEndereco.FieldByName('sNumero').Value           := sNUMERO;
-      tblEndereco.FieldByName('sComplemento').Value      := sCOMPLEMENTO;
-      tblEndereco.FieldByName('sBairro').Value           := sBAIRRO;
-      tblEndereco.FieldByName('scidade').Value           := sCIDADE;
-      tblEndereco.FieldByName('sUF').Value               := sUF;
+      tblEndereco.FieldByName('sEndereco').AsString         := sENDERECO;
+      tblEndereco.FieldByName('sNumero').AsString           := sNUMERO;
+      tblEndereco.FieldByName('sComplemento').AsString      := sCOMPLEMENTO;
+      tblEndereco.FieldByName('sBairro').AsString           := sBAIRRO;
+      tblEndereco.FieldByName('scidade').AsString           := sCIDADE;
+      tblEndereco.FieldByName('sUF').AsString               := sUF;
       if sCODIGO_MUNICIPIO <> '' then
-        tblEndereco.FieldByName('idMunicipio').Value     := sCODIGO_MUNICIPIO;
-      tblEndereco.FieldByName('sCep').Value              := RemoveCaracterEspecial(sCEP);
+        tblEndereco.FieldByName('idMunicipio').AsString     := sCODIGO_MUNICIPIO;
+      tblEndereco.FieldByName('sCep').AsString              := RemoveCaracterEspecial(sCEP);
       tblEndereco.Post;
+
+      QryCadastro.FieldByName('idEndereco').AsInteger := tblEndereco.FieldByName('idEndereco').AsInteger;
     end;
   end
   else
@@ -379,6 +382,8 @@ begin
     tblEndereco.FieldByName('idMunicipio').Value       := ConsultaCep.sIBGE_Municipio;
   tblEndereco.FieldByName('sCep').Value              := RemoveCaracterEspecial(ConsultaCep.sCEP);
   tblEndereco.Post;
+
+  QryCadastro.FieldByName('idEndereco').AsInteger := tblEndereco.FieldByName('idEndereco').AsInteger;
 end;
 
 procedure TfrmCadastro_Cliente.btnSintegraClick(Sender: TObject);
@@ -399,6 +404,15 @@ end;
 procedure TfrmCadastro_Cliente.ediDataNascimentoChange(Sender: TObject);
 begin
   QryCadastro.FieldByName('DATA_NASCIMENTO').AsDateTime := ediDataNascimento.DateTime;
+end;
+
+procedure TfrmCadastro_Cliente.ediEnderecoConsultChange(Sender: TObject);
+begin
+  if (QryCadastro.RecordCount > 0) and (QryCadastro.State in [dsEdit,dsInsert]) then
+  begin
+    if tblEndereco.FieldByName('idEndereco').AsInteger > 0 then
+      QryCadastro.FieldByName('idEndereco').AsInteger := tblEndereco.FieldByName('idEndereco').AsInteger;
+  end;
 end;
 
 procedure TfrmCadastro_Cliente.DBComboBox1Change(Sender: TObject);
@@ -458,7 +472,12 @@ begin
     end;
     nbPost:
     begin
-
+      if (tblEndereco.FieldByName('idEndereco').AsInteger > 0) and (QryCadastro.FieldByName('idEndereco').AsInteger <> tblEndereco.FieldByName('idEndereco').AsInteger) then
+      begin
+        QryCadastro.Edit;
+        QryCadastro.FieldByName('idEndereco').AsInteger := tblEndereco.FieldByName('idEndereco').AsInteger;
+        QryCadastro.Post;
+      end;
     end;
     nbCancel: ;
     nbRefresh: ;

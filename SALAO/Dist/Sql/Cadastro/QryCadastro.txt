@@ -62,6 +62,7 @@ Select idCadastro,
        idSubTipoCadastro,
        idVendedor,
        idRepresentate,
-       idTransporte
+       idTransporte,
+       C.idEndereco as idEndereco
        from tbCadastros C
 LEFT JOIN tbendereco E ON C.idEndereco = E.idEndereco

@@ -1,0 +1,174 @@
+unit Classe.PesquisaFuncionarios;
+
+interface
+
+uses
+  uClass.Funcionarios,
+  FireDAC.Comp.Client,
+  System.Classes,
+  System.SysUtils,
+  uDM_CADASTRO,
+  Vcl.Forms, Vcl.Dialogs;
+
+type
+  TPesquisaFuncionarios = class(TFuncionarios)
+    private
+      class
+    FsEndereco: String; function  PreparaPesq(Pesquisa:TPesquisaFuncionarios):string;
+    procedure SetsEndereco(const Value: String);
+    public
+      class procedure SqlOpen(QryFuncionarios : TFDQuery;
+                              Pesquisa        : TPesquisaFuncionarios);
+    published
+      property sEndereco:String read FsEndereco write SetsEndereco;
+  end;
+
+implementation
+
+{ TPesquisaFuncionarios }
+
+class function TPesquisaFuncionarios.PreparaPesq(Pesquisa: TPesquisaFuncionarios): string;
+var
+  sPesquisa: string;
+begin
+  sPesquisa := '';
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.idFuncionarios) <> '' then
+      sPesquisa := sPesquisa + ' AND idFuncionarios = ' + QuotedStr(Pesquisa.idFuncionarios);
+  end
+  else
+  begin
+    if Trim(Pesquisa.idFuncionarios) <> '' then
+      sPesquisa := ' Where idFuncionarios = ' + QuotedStr(Pesquisa.idFuncionarios);
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sCodigoFuncionario) <> '' then
+      sPesquisa := sPesquisa + ' AND sCodigoFuncionario = ' + QuotedStr(Pesquisa.sCodigoFuncionario);
+  end
+  else
+  begin
+    if Trim(Pesquisa.sCodigoFuncionario) <> '' then
+      sPesquisa := ' Where sCodigoFuncionario = ' + QuotedStr(Pesquisa.sCodigoFuncionario);
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sNomeFuncionario) <> '' then
+      sPesquisa := sPesquisa + ' AND sNomeFuncionario LIKE ' + QuotedStr(Pesquisa.sNomeFuncionario+'%');
+  end
+  else
+  begin
+    if Trim(Pesquisa.sNomeFuncionario) <> '' then
+      sPesquisa := ' Where sNomeFuncionario LIKE ' + QuotedStr(Pesquisa.sNomeFuncionario+'%');
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sApelidoFuncionario) <> '' then
+      sPesquisa := sPesquisa + ' AND sApelidoFuncionario LIKE ' + QuotedStr(Pesquisa.sApelidoFuncionario+'%');
+  end
+  else
+  begin
+    if Trim(Pesquisa.sApelidoFuncionario) <> '' then
+      sPesquisa := ' Where sApelidoFuncionario LIKE ' + QuotedStr(Pesquisa.sApelidoFuncionario+'%');
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sSexo) <> '' then
+      sPesquisa := sPesquisa + ' AND sSexo LIKE ' + QuotedStr(Pesquisa.sSexo+'%');
+  end
+  else
+  begin
+    if Trim(Pesquisa.sSexo) <> '' then
+      sPesquisa := ' Where sSexo LIKE ' + QuotedStr(Pesquisa.sSexo+'%');
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.idDepartamento) <> '' then
+      sPesquisa := sPesquisa + ' AND idDepartamento LIKE ' + QuotedStr(Pesquisa.idDepartamento+'%');
+  end
+  else
+  begin
+    if Trim(Pesquisa.idDepartamento) <> '' then
+      sPesquisa := ' Where idDepartamento LIKE ' + QuotedStr(Pesquisa.idDepartamento+'%');
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sEndereco) <> '' then
+      sPesquisa := sPesquisa + ' AND sEndereco LIKE ' + QuotedStr(Pesquisa.sEndereco+'%');
+  end
+  else
+  begin
+    if Trim(Pesquisa.sEndereco) <> '' then
+      sPesquisa := ' Where sEndereco LIKE ' + QuotedStr(Pesquisa.sEndereco+'%');
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sStatus) <> '' then
+      sPesquisa := sPesquisa + ' AND sStatus LIKE ' + QuotedStr(Pesquisa.sStatus+'%');
+  end
+  else
+  begin
+    if Trim(Pesquisa.sStatus) <> '' then
+      sPesquisa := ' Where sStatus LIKE ' + QuotedStr(Pesquisa.sStatus+'%');
+  end;
+
+  if sPesquisa <> '' then
+  begin
+    if Trim(Pesquisa.sCPF) <> '' then
+      sPesquisa := sPesquisa + ' AND sCPF LIKE ' + QuotedStr(Pesquisa.sCPF+'%');
+  end
+  else
+  begin
+    if Trim(Pesquisa.sCPF) <> '' then
+      sPesquisa := ' Where sCPF LIKE ' + QuotedStr(Pesquisa.sCPF+'%');
+  end;
+
+  Result := sPesquisa;
+end;
+
+procedure TPesquisaFuncionarios.SetsEndereco(const Value: String);
+begin
+  FsEndereco := Value;
+end;
+
+class procedure TPesquisaFuncionarios.SqlOpen(QryFuncionarios: TFDQuery; Pesquisa: TPesquisaFuncionarios);
+var
+  sScript: string;
+  SqlListScript: TStringList;
+begin
+  sScript := Trim(IncludeTrailingBackslash(ExtractFilePath(Application.ExeName)) + 'Sql\Funcionarios\QryFuncionarios.txt');
+  if FileExists(sScript) then
+  begin
+    SqlListScript := TStringList.Create;
+    SqlListScript.LoadFromFile(sScript);
+    if SqlListScript.Text <> '' then
+    begin
+      sScript      := SqlListScript.Text;
+      SqlListScript.Free;
+      QryFuncionarios.Connection         := DM_CADASTRO.CONN;
+
+      QryFuncionarios.Close;
+      QryFuncionarios.SQL.Clear;
+      QryFuncionarios.SQL.Add(Trim(sScript));
+      QryFuncionarios.SQL.Add(' ' + Trim(PreparaPesq(Pesquisa)));
+      QryFuncionarios.Open;
+    end
+    else
+    begin
+      SqlListScript.Free;
+      MessageDlg('Sql script Funcionarios não instalado por favor verifique !',mtInformation,[mbOK],0);
+      Exit;
+    end;
+  end;
+end;
+
+end.

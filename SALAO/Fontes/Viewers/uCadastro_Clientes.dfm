@@ -2,7 +2,6 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
   Caption = 'CADASTROS'
   ClientHeight = 671
   OnShow = FormShow
-  ExplicitLeft = -301
   ExplicitWidth = 1386
   ExplicitHeight = 710
   PixelsPerInch = 96
@@ -12,6 +11,9 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
     ActivePage = TabSheet2
     ExplicitHeight = 671
     inherited TabSheet1: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 27
+      ExplicitWidth = 1362
       ExplicitHeight = 640
       inherited Panel1: TPanel
         Top = 575
@@ -1251,16 +1253,18 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           DataField = 'sEndereco'
           DataSource = dtsEndereco
           TabOrder = 20
+          OnChange = ediEnderecoConsultChange
         end
         object ediNumeroConsult: TDBEdit
           Left = 549
-          Top = 149
+          Top = 150
           Width = 157
           Height = 21
           CharCase = ecUpperCase
           DataField = 'sNumero'
           DataSource = dtsEndereco
           TabOrder = 21
+          OnChange = ediEnderecoConsultChange
         end
         object ediComplementoConsult: TDBEdit
           Left = 745
@@ -1271,6 +1275,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           DataField = 'sComplemento'
           DataSource = dtsEndereco
           TabOrder = 22
+          OnChange = ediEnderecoConsultChange
         end
         object ediCEPConsult: TDBEdit
           Left = 591
@@ -1281,6 +1286,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           DataField = 'sCep'
           DataSource = dtsEndereco
           TabOrder = 16
+          OnChange = ediEnderecoConsultChange
         end
         object ediBairroConsult: TDBEdit
           Left = 549
@@ -1291,6 +1297,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           DataField = 'sBairro'
           DataSource = dtsEndereco
           TabOrder = 27
+          OnChange = ediEnderecoConsultChange
         end
         object ediCidadeConsult: TDBEdit
           Left = 745
@@ -1301,6 +1308,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           DataField = 'scidade'
           DataSource = dtsEndereco
           TabOrder = 17
+          OnChange = ediEnderecoConsultChange
         end
         object ediCodigoMunicipioConsult: TDBEdit
           Left = 982
@@ -1311,6 +1319,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           DataField = 'idMunicipio'
           DataSource = dtsEndereco
           TabOrder = 23
+          OnChange = ediEnderecoConsultChange
         end
         object ediMunicipioConsult: TDBEdit
           Left = 982
@@ -1321,6 +1330,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           DataField = 'sMunicipio'
           DataSource = dtsEndereco
           TabOrder = 18
+          OnChange = ediEnderecoConsultChange
         end
         object ediUFConsult: TDBEdit
           Left = 549
@@ -1331,6 +1341,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           DataField = 'sUF'
           DataSource = dtsEndereco
           TabOrder = 15
+          OnChange = ediEnderecoConsultChange
         end
         object DBLookupComboBox4: TDBLookupComboBox
           Left = 982
@@ -1745,8 +1756,8 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
           OnChange = ediDataEmpresaChange
         end
         object btnBuscar: TBitBtn
-          Left = 427
-          Top = 22
+          Left = 429
+          Top = 20
           Width = 34
           Height = 26
           Enabled = False
@@ -2080,7 +2091,7 @@ inherited frmCadastro_Cliente: TfrmCadastro_Cliente
   end
   object tblEndereco: TFDTable
     MasterSource = dtsCadastro
-    MasterFields = 'idCadastro'
+    MasterFields = 'idEndereco'
     UpdateOptions.UpdateTableName = 'tbendereco'
     TableName = 'tbendereco'
     Left = 312

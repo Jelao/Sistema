@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2018/02/01 12:32:34.000.180,C:\Projetos\Delphi berlin\SALAO CABELELEIRO\Fontes\uPrinc.dfm=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2018/02/01 12:32:41.000.694,C:\Projetos\Delphi berlin\SALAO CABELELEIRO\Fontes\Salao.dproj=C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2018/02/15 12:00:31.000.345,C:\Projetos\Delphi berlin\SISTEMA\SALAO\Fontes\Unit1.dfm=C:\Projetos\Delphi berlin\SISTEMA\SALAO\Fontes\Viewers\uCadastro_Clientes.dfm</Transaction>
-    <Transaction>2018/02/15 12:18:04.000.344,C:\Projetos\Delphi berlin\SISTEMA\SALAO\Fontes\Unit1.dfm=C:\Projetos\Delphi berlin\SISTEMA\SALAO\Fontes\Model\uDM_CADASTRO.dfm</Transaction>
+    <Transaction>2018/02/01 12:32:34.000.180,C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Projetos\Delphi berlin\SALAO CABELELEIRO\Fontes\uPrinc.dfm</Transaction>
+    <Transaction>2018/02/01 12:32:41.000.694,C:\Users\SERVIDOR\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Projetos\Delphi berlin\SALAO CABELELEIRO\Fontes\Salao.dproj</Transaction>
+    <Transaction>2018/02/15 12:00:31.000.345,C:\Projetos\Delphi berlin\SISTEMA\SALAO\Fontes\Viewers\uCadastro_Clientes.dfm=C:\Projetos\Delphi berlin\SISTEMA\SALAO\Fontes\Unit1.dfm</Transaction>
+    <Transaction>2018/02/15 12:18:04.000.344,C:\Projetos\Delphi berlin\SISTEMA\SALAO\Fontes\Model\uDM_CADASTRO.dfm=C:\Projetos\Delphi berlin\SISTEMA\SALAO\Fontes\Unit1.dfm</Transaction>
+    <Transaction>2018/02/20 08:33:04.000.370,C:\Projetos\Delphi berlin\SISTEMA\SALAO\Fontes\Unit1.dfm=C:\Projetos\Delphi berlin\SISTEMA\SALAO\Fontes\Viewers\uCadastro_Funcionario.dfm</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
 		<NoProfile iOSSimulator="iPhone5" Android="AVD_for_Nexus_7_by_Google"/>
